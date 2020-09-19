@@ -1,3 +1,6 @@
+// PG database client/connection setup
+const pg = require('pg');
+
 let dbParams = {};
 if (process.env.DATABASE_URL) {
   dbParams.connectionString = process.env.DATABASE_URL;
@@ -10,5 +13,11 @@ if (process.env.DATABASE_URL) {
     database: process.env.DB_NAME
   };
 }
+const db = new Client(dbParams);
 
-module.exports = dbParams;
+client.connect(() => {
+  console.log('connected to database');
+});
+
+module.exports = db;
+
