@@ -13,11 +13,10 @@ if (process.env.DATABASE_URL) {
     database: process.env.DB_NAME
   };
 }
-const db = new Client(dbParams);
+const client = new Client(dbParams);
 
 client.connect(() => {
   console.log('connected to database');
 });
 
-module.exports = db;
-
+module.exports = client;
