@@ -10,7 +10,7 @@ const router = express.Router();
 const { getUserById } = require('../db/user-queries');
 
 // GET /users/:id
-router.get('/:id', (req, res) => {
+router.get('/api/users/:userid', (req, res) => {
   getUserById(req.params.id)
     .then((user) => {
       res.json({ user });
