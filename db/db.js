@@ -1,5 +1,6 @@
 // PG database client/connection setup
 const pg = require('pg');
+const Client = pg.Client;
 
 let dbParams = {};
 if (process.env.DATABASE_URL) {
