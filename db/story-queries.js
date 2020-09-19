@@ -1,4 +1,5 @@
 const db = require('./db');
+const { response } = require('express');
 
 const getStories = () => {
   return db.query('SELECT * FROM stories;')

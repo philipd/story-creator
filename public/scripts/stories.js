@@ -26,6 +26,6 @@ const loadStories = function() {
 };
 
 $(document).ready(() => {
-  // loadStories();
+  loadStories();
   renderStories(sampleStories);
 });

@@ -11,7 +11,8 @@ const { getUserById } = require('../db/user-queries');
 
 // GET /users/:id
 router.get('/api/users/:userid', (req, res) => {
-  getUserById(req.params.id)
+  getUserById(req.params)
+  console.log(req.params)
     .then((user) => {
       res.json({ user });
     })
