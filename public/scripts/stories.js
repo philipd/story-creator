@@ -1,8 +1,8 @@
-const sampleStories = [
+const sampleStories = { stories: [
   { userId: 1, title: 'Midnight\'s Children' },
   { userId: 1, title: 'The Crying of Lot 49' },
   { userId: 2, title: 'Oryx and Crake' }
-];
+]};
 
 const createStoryElement = function(storyData) {
   let $story = $('<article>').addClass('story');
@@ -21,11 +21,11 @@ const renderStories = function(stories) {
 const loadStories = function() {
   $.ajax('api/stories', { method: 'GET' })
     .then(function(response) {
-      renderStories(response);
+      renderStories(response.stories);
     });
 };
 
 $(document).ready(() => {
-  // loadStories();
-  renderStories(sampleStories);
+  loadStories();
+  // renderStories(sampleStories);
 });
