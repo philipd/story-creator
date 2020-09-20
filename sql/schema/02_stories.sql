@@ -6,6 +6,8 @@ CREATE TYPE story_status AS ENUM ('complete', 'open', 'pending');
 
 CREATE TABLE stories (
   id SERIAL PRIMARY KEY NOT NULL,
+  user_id INTEGER NOT NULL REFERENCES users(id),
   title VARCHAR(255) NOT NULL,
+  text TEXT,
   status story_status DEFAULT 'open'
 );
