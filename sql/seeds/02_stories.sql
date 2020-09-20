@@ -3,7 +3,7 @@ insert into stories (id, user_id, title, text) values (2, 34, 'Letter to Three W
 insert into stories (id, user_id, title, text) values (3, 40, 'You Ain''t Seen Nothin'' Yet (Vous n''avez encore rien vu)', 'In sagittis dui vel nisl. Duis ac nibh. Fusce lacus purus, aliquet at, feugiat non, pretium quis, lectus.');
 insert into stories (id, user_id, title, text) values (4, 84, 'Princess Raccoon (Operetta tanuki goten)', 'In quis justo. Maecenas rhoncus aliquam lacus. Morbi quis tortor id nulla ultrices aliquet.');
 insert into stories (id, user_id, title, text) values (5, 88, 'Wrong Box, The', 'In hac habitasse platea dictumst. Etiam faucibus cursus urna. Ut tellus.');
-insert into stories (id, user_id, title, text) values (6, 54, 'Stranger Within, The', 'In quis justo. Maecenas rhoncus aliquam lacus. Morbi quis tortor id nulla ultrices aliquet.');
+insert into stories (id, user_id, title, text) values (6, 54, 'The Stranger Within', 'Tortured by the abduction of her 3-year-old son 12 years earlier, Mare does not know what to believe when a young man arrives at her door claiming to be Luke, her long-lost child. ');
 insert into stories (id, user_id, title, text) values (7, 14, 'Exhibition', 'Vestibulum ac est lacinia nisi venenatis tristique. Fusce congue, diam id ornare imperdiet, sapien urna pretium nisl, ut volutpat sapien arcu sed augue. Aliquam erat volutpat.');
 insert into stories (id, user_id, title, text) values (8, 77, 'I Love You Again', 'Nullam porttitor lacus at turpis. Donec posuere metus vitae ipsum. Aliquam non mauris.');
 insert into stories (id, user_id, title, text) values (9, 84, 'Chouga (Shuga)', 'Maecenas leo odio, condimentum id, luctus nec, molestie sed, justo. Pellentesque viverra pede ac diam. Cras pellentesque volutpat dui.');
