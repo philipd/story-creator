@@ -1,21 +1,45 @@
-const sampleStories = {
-  stories: [
-    { userId: 1, title: 'Midnight\'s Children' },
-    { userId: 1, title: 'The Crying of Lot 49' },
-    { userId: 2, title: 'Oryx and Crake' }
-  ]
-};
-
 const createStoryElement = function(storyData) {
   let $story = $('<article>').addClass('story');
   let $title = $('<div>').addClass('title').text(storyData.title);
-  $story.append($title);
+  let $text = $('<p>').addClass('storytext').text(storyData.text);
+  let $footer = $(`
+    <footer class="footer">
+      <div class="icons">
+          <i class="fas fa-flag fa-xs"></i>
+          <i class="far fa-retweet fa-xs"></i>
+          <i class="far fa-heart fa-xs"></i>
+      </div>
+    </footer>`)
+  console.log(storyData)
+  $story.append($title, $text, $footer);
   return $story;
 };
 
+const createContributionElement = function(contributionData) {
+  let output = $(`<section id="container">
+      <article class="">
+        <header class="-header">
+          <span id="user"></span>
+          <span id="handle"></span>
+        </header>
+        <section class="section">
+          <div id="text"></div>
+        </section>
+        <footer class="footer">
+          <div></div>
+          <div class="icons"><i class="fas fa-flag fa-xs"></i>
+            <i class="far fa-retweet fa-xs"></i>
+            <i class="far fa-heart fa-xs"></i></div>
+        </footer>
+      </article>
+    </section>`);
+
+  return output;
+}
+
 const renderStories = function(story) {
   let $story = createStoryElement(story);
-  $('#stories').prepend($story);
+  $('#story').prepend($story);
 
 };
 
