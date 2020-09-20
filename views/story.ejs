@@ -9,9 +9,45 @@
 
     <script type="text/javascript" src="/vendor/jquery-3.0.0.js"></script>
     <script type="text/javascript" src="/scripts/story.js"></script>
-  </head>
+    <link
+            rel="stylesheet"
+            href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
+            integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p"
+            crossorigin="anonymous"
+        />
+   </head>
 
   <body>
-    <div id="stories"></div>
+    <div id="story"></div>
+    <div id="storytext">
+      <button type="button">Open for Contributions</button>
+      <button type="submit">The End</button>
+
+
+    </div>
+    <!-- Page-specific (main) content here -->
+    <main class= "container" >
+          <h2>Add Contribution</h2>
+          <form id="form">
+            <label for="contribution-text"><b>And then the story continues...</b></label>
+            <textarea name="text" id="contribution-text"></textarea>
+            <div>
+              <button type="submit">Submit</button>
+            </div>
+          </form>
+        <section id="contributions-container"></section>
+        <h2>Pending Contributions</h2>
+        <div class="contribution"><h4>Cool Contribution</h4>
+          <article>Bla bla bla bla bla Bla bla bla bla bla Bla bla bla bla bla </article>
+
+
+
+        </div>
+        <button type="button">Delete Contribution</button>
+        <button type="button">Accept Contribution</button>
+        <button type="button">Upvote Contribution</button>
+        <output id="upvotes" for="contribution-text">0</output>
+
+    </main>
   </body>
 </html>
