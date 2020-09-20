@@ -15,7 +15,15 @@ const getStoriesById = (id) => {
     });
 };
 
+const getStoriesByUserId = (id) => {
+  return db.query('SELECT * FROM stories WHERE stories.author_id = $1',[id])
+    .then((response) => {
+      return response.rows[0];
+    });
+};
+
 module.exports = {
   getStories,
-  getStoriesById
+  getStoriesById,
+  getStoriesByUserId
 };
