@@ -10,7 +10,6 @@ const createStoryElement = function(storyData) {
           <i class="far fa-heart fa-xs"></i>
       </div>
     </footer>`)
-  console.log(storyData)
   $story.append($title, $text, $footer);
   return $story;
 };
@@ -44,7 +43,7 @@ const renderStories = function(story) {
 };
 
 const loadStories = function() {
-  $.ajax('api/stories/' + 3, { method: 'GET' })
+  $.ajax('api/stories/' + 6, { method: 'GET' })
     .then(function(response) {
       renderStories(response.story);
     });

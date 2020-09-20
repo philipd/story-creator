@@ -8,7 +8,8 @@ router.get('/stories', (req, res) => {
 });
 
 router.get("/story", (req, res) => {
-  res.render("story");
+  let templateVars = { userid: req.session.userid };
+  res.render("story", templateVars);
 });
 
 router.get("/login/:userid", (req, res) => {
