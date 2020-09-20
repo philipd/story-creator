@@ -53,6 +53,10 @@ app.get("/stories", (req, res) => {
   res.render("stories");
 });
 
+app.get("/story", (req, res) => {
+  res.render("story");
+});
+
 app.listen(PORT, () => {
   console.log(`Example app listening on port ${PORT}`);
 });

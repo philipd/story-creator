@@ -12,8 +12,10 @@ router.get('/', (req, res) => {
 
 // GET /stories/:storyid
 router.get('/:storyid', (req, res) => {
-  getStoriesById(req.params.id)
+  console.log('hello',req.params);
+  getStoriesById(req.params.storyid)
     .then((story) => {
+      console.log(story);
       res.json({ story });
     })
 });
