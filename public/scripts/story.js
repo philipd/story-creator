@@ -30,7 +30,7 @@ const createContributionsContainer = function(storyData) {
     `<article class="contribution">
       <article class="contribution-header">
         <div id="contribution-author">
-          <span id="contribution-avatar">Avatar</span>
+          <span id="contribution-avatar"><img src=${storyData.avatar}></span>
           <span id="contribution-handle">Username</span>
         </div>
         <p class="title">Part ${storyData.chapter_number}</p>
@@ -39,7 +39,7 @@ const createContributionsContainer = function(storyData) {
           <output class="upvotes">0</output>
         </div>
       </article>
-      <p>${storyData.contributions_text}</p>
+      <p>${storyData.ctext}</p>
       <footer class="footer">
         <div class="contributionbuttons">
           <button type="button">Delete Contribution</button>
@@ -62,6 +62,15 @@ const loadStories = function() {
     });
 };
 
+const loadContributions = function() {
+  $.ajax('../api/contributions/', { method: 'GET' })
+    .then(function(response) {
+      console.log(response)
+    });
+};
+
+
 $(document).ready(() => {
   loadStories();
+  loadContributions();
 });
