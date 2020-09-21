@@ -19,6 +19,24 @@ const getStoriesById = (storyid) => {
     });
 };
 
+const getContributions = () => {
+  return db.query('SELECT * FROM contributions;')
+    .then((response) => {
+      return response.rows;
+    });
+};
+
+const getContributionsById = (contributionid) => {
+  return db.query(`SELECT stories.*, contributions.*, users.*
+  FROM contributions
+  JOIN users ON contributions.user_id = users.id
+  JOIN stories ON contributions.story_id = stories.id
+  WHERE contributions.id = $1`, [contributionid])
+    .then((response) => {
+      return response.rows[0];
+    });
+};
+
 const getStoriesByUserId = (id) => {
   return db.query('SELECT * FROM stories WHERE stories.user_id = $1',[id])
     .then((response) => {
@@ -29,5 +47,7 @@ const getStoriesByUserId = (id) => {
 module.exports = {
   getStories,
   getStoriesById,
+  getContributions,
+  getContributionsById,
   getStoriesByUserId
 };
