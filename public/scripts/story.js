@@ -17,10 +17,10 @@ const createStoryElement = function(storyData) {
   let $text = $('<p>').addClass('storytext').text(storyData.text);
   let $footer = $(`
     <footer class="footer">
-    <div id="storybuttons">
-      <button type="submit">End Story</button>
-      <button type="button">Open for Contributions</button>
-    </div>
+      <div id="storybuttons">
+        <button type="submit">End Story</button>
+        <button type="button">Open for Contributions</button>
+      </div>
     </footer>`);
   $story.append($storyHeader, $text, $footer);
   return $story;

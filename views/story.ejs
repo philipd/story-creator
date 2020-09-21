@@ -22,26 +22,40 @@
     <div id="story"></div>
     <!-- Page-specific (main) content here -->
     <main class= "container" >
-          <h2>Add Contribution</h2>
-          <form id="form">
-            <label for="contribution-text"><b>And then the story continues...</b></label>
-            <textarea name="text" id="contribution-text"></textarea>
-            <div>
-              <button type="submit">Submit</button>
-            </div>
-          </form>
-        <section id="contributions-container">
+
+      <form id="form">
+        <h2><b>Add Contribution</b></h2>
+        <label for="add-text"><b>And then the story continues...</b></label>
+        <textarea name="text" id="contribution-text"></textarea>
+        <div class="footer">
+            <button type="submit">Submit</button>
+        </div>
+      </form>
+
+      <section id="contributions-container">
         <h2>Pending Contributions</h2>
-        <div class="contribution"><h4>Cool Contribution</h4>
-          <article>
-            <p>Bla bla bla bla bla Bla bla bla bla bla Bla bla bla bla bla</p>
+        <article class="contribution">
+          <article class="contribution-header">
+          <div id="contribution-author">
+            <span id="contribution-avatar">Avatar</span>
+            <span id="contribution-handle">Username</span>
+          </div>
+          <p class="title">Part "chapter_number"</p>
+          <div class="icons">
+            <i id="storyupvote" class="far fa-heart fa-xs"></i>
+            <output class="upvotes">0</output>
+          </div>
+          </article>
+        <p>Bla bla bla bla bla Bla bla bla bla bla Bla bla bla bla bla</p>
+        <footer class="footer">
+          <div class="contributionbuttons">
             <button type="button">Delete Contribution</button>
             <button type="button">Accept Contribution</button>
-            <button type="button">Upvote Contribution</button>
-          </article>
-        </section>
-        </div>
-      </main>
+          </div>
+        </footer>
+        </article>
+      </section>
+    </main>
     <script type="text/javascript" src="/scripts/story.js"></script>
     <script type="text/javascript" src="/scripts/upvotes.js"></script>
 
