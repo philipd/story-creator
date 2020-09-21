@@ -30,6 +30,7 @@ const loadStories = function() {
     // Get stories by userid
     $.ajax('../../api/stories/user/' + userid, { method: 'GET' })
       .then(function(response) {
+        console.log('Ajax response:', response);
         renderStories(response.stories);
       });
   }
