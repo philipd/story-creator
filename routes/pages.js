@@ -1,8 +1,8 @@
 const express = require('express');
 const router = express.Router();
 
-router.get('/stories/user/:userid', (req, res) => {
-  let templateVars = { userid: req.session.userid, authorid: req.params.userid };
+router.get('/stories/user/:authorid', (req, res) => {
+  let templateVars = { userid: req.session.userid, authorid: req.params.authorid };
   res.render("mystories", templateVars);
 });
 
