@@ -6,6 +6,11 @@ router.get('/stories/user/:userid', (req, res) => {
   res.render("mystories", templateVars);
 });
 
+router.get('/stories/:storyid', (req, res) => {
+  let templateVars = { userid: req.session.userid, storyid: req.params.storyid };
+  res.render("story", templateVars);
+});
+
 router.get('/stories', (req, res) => {
   let templateVars = { userid: req.session.userid };
   res.render("stories", templateVars);
