@@ -56,7 +56,7 @@ const renderStories = function(story) {
 };
 
 const loadStories = function() {
-  $.ajax('../api/stories/' + 6, { method: 'GET' })
+  $.ajax('../api/stories/' , { method: 'GET' })
     .then(function(response) {
       renderStories(response.story);
     });
