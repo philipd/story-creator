@@ -21,19 +21,13 @@ const renderStories = function(stories) {
 };
 
 const loadStories = function() {
-  // Get the current URL
-  const url = $(location).attr('href');
-  // Get the requested userid, if it exists
-  const userid = Number(url.split('/').slice(-1)[0]);
+  const authorid = $("#page-data").attr("data-authorid");
 
-  if (!isNaN(userid)) {
-    // Get stories by userid
-    $.ajax('../../api/stories/user/' + userid, { method: 'GET' })
-      .then(function(response) {
-        console.log('Ajax response:', response);
-        renderStories(response.stories);
-      });
-  }
+  $.ajax('../../api/stories/user/' + authorid, { method: 'GET' })
+    .then(function(response) {
+      console.log('Ajax response:', response);
+      renderStories(response.stories);
+    });
 };
 
 $(document).ready(() => {
