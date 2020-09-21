@@ -19,7 +19,7 @@ const renderStories = function(stories) {
 };
 
 const loadStories = function() {
-  $.ajax('api/stories', { method: 'GET' })
+  $.ajax('../api/stories', { method: 'GET' })
     .then(function(response) {
       renderStories(response.stories);
     });
