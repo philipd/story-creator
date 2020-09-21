@@ -25,20 +25,14 @@ const loadStories = function() {
   const url = $(location).attr('href');
   // Get the requested userid, if it exists
   const userid = Number(url.split('/').slice(-1)[0]);
+
   if (!isNaN(userid)) {
     // Get stories by userid
     $.ajax('../../api/stories/user/' + userid, { method: 'GET' })
       .then(function(response) {
-        renderStories(response.story);
-      });
-  } else {
-    // Get all stories
-    $.ajax('../../api/stories', { method: 'GET' })
-      .then(function(response) {
         renderStories(response.stories);
       });
   }
-
 };
 
 $(document).ready(() => {

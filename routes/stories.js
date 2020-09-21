@@ -22,7 +22,7 @@ router.get('/:storyid', (req, res) => {
 router.get('/user/:userid', (req, res) => {
   getStoriesByUserId(req.params.userid)
     .then((stories) => {
-      res.json({ story: stories });
+      res.json({ stories });
     })
 });
 
