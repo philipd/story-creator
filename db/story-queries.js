@@ -16,7 +16,6 @@ const getStoriesById = (id) => {
 };
 
 const getStoriesByUserId = (id) => {
-  console.log('id', id);
   return db.query('SELECT * FROM stories WHERE stories.user_id = $1',[id])
     .then((response) => {
       return response.rows;

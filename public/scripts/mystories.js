@@ -25,9 +25,7 @@ const loadStories = function() {
   const url = $(location).attr('href');
   // Get the requested userid, if it exists
   const userid = Number(url.split('/').slice(-1)[0]);
-  console.log(userid);
   if (!isNaN(userid)) {
-    console.log('hi');
     // Get stories by userid
     $.ajax('../../api/stories/user/' + userid, { method: 'GET' })
       .then(function(response) {

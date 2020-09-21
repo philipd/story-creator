@@ -14,17 +14,14 @@ router.get('/', (req, res) => {
 router.get('/:storyid', (req, res) => {
   getStoriesById(req.params.storyid)
     .then((story) => {
-      console.log(story);
       res.json({ story });
     })
 });
 
 // GET stories by user id: /stories/user/:userid
 router.get('/user/:userid', (req, res) => {
-  console.log('Req.params:',req.params);
   getStoriesByUserId(req.params.userid)
     .then((stories) => {
-      console.log('Response:',stories);
       res.json({ story: stories });
     })
 });
