@@ -1,12 +1,11 @@
 const createStoryElement = function(storyData) {
   console.log(storyData)
   let $story = $('<article>').addClass('story');
-  let $title = $('<div>').addClass('title').text(storyData.title);
   let $storyHeader = $(`
   <article class="storyheader">
     <div id="author">
-    <span id="avatar">Avatar</span>
-    <span id="handle">Username</span>
+    <span id="avatar"><img src=${storyData.avatar}></span>
+    <span id="handle">${storyData.name}</span>
     </div>
     <p class="title">${storyData.title}</p>
     <div class="icons">
@@ -26,25 +25,28 @@ const createStoryElement = function(storyData) {
   return $story;
 };
 
-const createContributionElement = function(contributionData) {
-  let output = $(`<section id="container">
-      <article class="">
-        <header class="-header">
-          <span id="user"></span>
-          <span id="handle"></span>
-        </header>
-        <section class="section">
-          <div id="text"></div>
-        </section>
-        <footer class="footer">
-          <div class="icons">
-            <i class="far fa-heart fa-xs"></i>
-            <output id="upvotes" for="contribution-text">0</output>
-          </div>
-        </footer>
+const createContributionsContainer = function(storyData) {
+  let output = (
+    `<article class="contribution">
+      <article class="contribution-header">
+        <div id="contribution-author">
+          <span id="contribution-avatar">Avatar</span>
+          <span id="contribution-handle">Username</span>
+        </div>
+        <p class="title">Part ${storyData.chapter_number}</p>
+        <div class="icons">
+          <i id="storyupvote" class="far fa-heart fa-xs"></i>
+          <output class="upvotes">0</output>
+        </div>
       </article>
-    </section>`);
-
+      <p>${storyData.contributions_text}</p>
+      <footer class="footer">
+        <div class="contributionbuttons">
+          <button type="button">Delete Contribution</button>
+          <button type="button">Accept Contribution</button>
+        </div>
+      </footer>
+    </article>`);
   return output;
 }
 
@@ -54,7 +56,7 @@ const renderStories = function(story) {
 };
 
 const loadStories = function() {
-  $.ajax('api/stories/' + 6, { method: 'GET' })
+  $.ajax('../api/stories/' + 6, { method: 'GET' })
     .then(function(response) {
       renderStories(response.story);
     });

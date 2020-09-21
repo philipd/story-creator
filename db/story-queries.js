@@ -8,8 +8,12 @@ const getStories = () => {
     });
 };
 
-const getStoriesById = (id) => {
-  return db.query('SELECT * FROM stories WHERE id = $1', [id])
+const getStoriesById = (storyid) => {
+  return db.query(`SELECT stories.*, contributions.*, users.*
+  FROM stories
+  JOIN users ON stories.user_id = users.id
+  JOIN contributions ON contributions.story_id = stories.id
+  WHERE stories.id = $1`, [storyid])
     .then((response) => {
       return response.rows[0];
     });
