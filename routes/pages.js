@@ -1,7 +1,11 @@
 const express = require('express');
 const router = express.Router();
 
-// GET /stories/:storyid
+router.get('/stories/user/:userid', (req, res) => {
+  let templateVars = { userid: req.session.userid };
+  res.render("mystories", templateVars);
+});
+
 router.get('/stories', (req, res) => {
   let templateVars = { userid: req.session.userid };
   res.render("stories", templateVars);

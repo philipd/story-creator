@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const { getStories, getStoriesById } = require('../db/story-queries');
+const { getStories, getStoriesById, getStoriesByUserId } = require('../db/story-queries');
 
 // GET /stories/
 router.get('/', (req, res) => {
@@ -12,11 +12,20 @@ router.get('/', (req, res) => {
 
 // GET /stories/:storyid
 router.get('/:storyid', (req, res) => {
-  console.log('hello',req.params);
   getStoriesById(req.params.storyid)
     .then((story) => {
       console.log(story);
       res.json({ story });
+    })
+});
+
+// GET stories by user id: /stories/user/:userid
+router.get('/user/:userid', (req, res) => {
+  console.log('Req.params:',req.params);
+  getStoriesByUserId(req.params.userid)
+    .then((stories) => {
+      console.log('Response:',stories);
+      res.json({ story: stories });
     })
 });
 

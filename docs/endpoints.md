@@ -7,7 +7,7 @@ Browse all stories:  /stories
 
 View Story:   /stories/:storyid
 
-My stories:   /stories/:userid
+My stories:   /stories/user/:userid
 
 My contributions: /contributions/:userid
 
