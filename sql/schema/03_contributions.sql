@@ -5,5 +5,5 @@ CREATE TABLE contributions (
   user_id INTEGER REFERENCES users(id),
   chapter_number serial,
   accepted boolean DEFAULT false,
-  text TEXT
+  ctext TEXT
 )
