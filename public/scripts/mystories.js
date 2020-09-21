@@ -12,25 +12,14 @@ const createStoryElement = function(storyData) {
   let $story = $('<article>').addClass('story');
   let $storyHeader = $(`
   <article class="storyheader">
-    <div id="author">
-    <span id="avatar"><img src=${storyData.avatar}></span>
-    <span id="handle">${storyData.name}</span>
-    </div>
-    <p class="title">${storyData.title}</p>
+    <p class="title"><a href="/stories/${storyData.id}">${storyData.title}</a></p>
     <div class="icons">
       <i id="storyupvote" class="far fa-heart fa-xs"></i>
       <output class="upvotes">0</output>
     </div>
   </article>`);
   let $text = $('<p>').addClass('storytext').text(storyData.text);
-  let $footer = $(`
-    <footer class="footer">
-      <div id="storybuttons">
-        <button type="submit">End Story</button>
-        <button type="button">Open for Contributions</button>
-      </div>
-    </footer>`);
-  $story.append($storyHeader, $text, $footer);
+  $story.append($storyHeader, $text, );
   return $story;
 };
 
