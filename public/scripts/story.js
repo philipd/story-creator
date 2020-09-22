@@ -27,7 +27,6 @@ const createStoryElement = function(storyData) {
 
 const createContributionsContainer = function(contributionData) {
   let output = '';
-  console.log(contributionData);
   contributionData.sort(function(a, b) {
     return a.chapter_number - b.chapter_number;
   });
@@ -57,7 +56,16 @@ const createContributionsContainer = function(contributionData) {
   return output;
 };
 
+
+const createAcceptedContainer = function(acceptedData) {
+  let $accepted = $('<article>').addClass('accepted');
+  let contributions = createContributionsContainer(acceptedData);
+  $accepted.append(contributions);
+  return ($accepted);
+};
+
 const renderStories = function(story) {
+  $('#story').empty();
   let $story = createStoryElement(story);
   $('#story').prepend($story);
 };
@@ -75,6 +83,18 @@ const loadStories = function() {
       renderStories(response.story);
     });
 };
+const renderAccepted = function(accepted) {
+  $('#accepted').empty();
+  let $accepted = createAcceptedContainer(accepted);
+  $("#accepted").append($accepted)
+}
+
+const loadAccepted = function() {
+  $.ajax('../api/stories/' + storyid + '/accepted', { method: 'GET' })
+    .then(function(response) {
+      renderAccepted(response.story)
+    });
+};
 
 let storyContributions = [];
 const loadContributions = function() {
@@ -88,6 +108,17 @@ const loadContributions = function() {
       renderContributions(storyContributions);
     });
 };
+
+const $postContribution = $('#form');
+  $postContribution.on('submit', function(event) {
+    event.preventDefault();
+    const serializedData = $(this).serialize();
+    console.log('Serializedata', serializedData);
+
+    $.post('../api/contributions/'+ storyid + '/addcontribution', serializedData)
+      .then()
+        loadContributions();
+});
 
 // const loadUpvotes = function() {
 //   $.ajax('../api/upvotes/', { method: 'GET' })
@@ -104,8 +135,8 @@ const addEventListeners = function() {
     // console.log(contributionId);
     $.ajax('../api/contributions/' + contributionId, { method: 'POST' })
       .then(response => {
-        console.log(response);
         loadStories();
+        loadAccepted();
       });
   });
 };
@@ -114,5 +145,6 @@ $(document).ready(() => {
   loadStories();
   loadContributions();
   addEventListeners();
+  loadAccepted();
   // loadUpvotes();
 });

@@ -20,6 +20,7 @@
     <div id="page-data" data-storyid="<%= storyid %>"></div>
     <header id="header"><%- include('partials/_header') %></header>
     <div id="story"></div>
+    <div id="accepted"></div>
     <!-- Page-specific (main) content here -->
     <main class= "container" >
 
@@ -28,7 +29,7 @@
         <label for="add-text"><b>And then the story continues...</b></label>
         <textarea name="text" id="contribution-text"></textarea>
         <div class="footer">
-            <button type="submit">Submit</button>
+            <button type="submit" method="post" id="post-contribution" >Submit</button>
         </div>
       </form>
 
