@@ -1,5 +1,5 @@
+
 const createStoryElement = function(storyData) {
-  console.log(storyData)
   let $story = $('<article>').addClass('story');
   let $storyHeader = $(`
   <article class="storyheader">
@@ -27,6 +27,7 @@ const createStoryElement = function(storyData) {
 
 const createContributionsContainer = function(contributionData) {
   let output = '';
+  console.log(contributionData)
   contributionData.sort(function(a,b) {
     return a.chapter_number - b.chapter_number;
   });
@@ -41,7 +42,7 @@ const createContributionsContainer = function(contributionData) {
           <p class="title">Part ${contribution.chapter_number}</p>
           <div class="icons">
             <i id="storyupvote" class="far fa-heart fa-xs"></i>
-            <output class="upvotes">0</output>
+            <output class="upvotes">${contribution.count}</output>
           </div>
         </article>
         <p>${contribution.ctext}</p>
@@ -61,8 +62,8 @@ const renderStories = function(story) {
   $('#story').prepend($story);
 };
 
-const renderContributions = function(contribution) {
-  let $contribution = createContributionsContainer(contribution);
+const renderContributions = function(contribution, upvotes) {
+  let $contribution = createContributionsContainer(contribution, upvotes);
   $('#contributions-container').append($contribution);
 };
 
@@ -70,16 +71,14 @@ const storyid = $("#page-data").attr("data-storyid");
 const loadStories = function() {
   $.ajax('../api/stories/' + storyid, { method: 'GET' })
     .then(function(response) {
-      console.log('Ajax response:', response);
       renderStories(response.story);
     });
 };
 
+let storyContributions = [];
 const loadContributions = function() {
   $.ajax('../api/contributions/', { method: 'GET' })
     .then(function(response) {
-      let storyContributions = [];
-      console.log('Ajax response:', response);
       for (let i = 0; i < response.contributions.length; i++) {
         if (response.contributions[i].story_id == storyid) {
           storyContributions.push(response.contributions[i])
@@ -89,8 +88,16 @@ const loadContributions = function() {
     });
 };
 
+// const loadUpvotes = function() {
+//   $.ajax('../api/upvotes/', { method: 'GET' })
+//     .then(function(response) {
+//     console.log('Ajax -', response.upvotes)
+//       response.upvotes;
+//     });
+// };
 
 $(document).ready(() => {
   loadStories();
   loadContributions();
+  // loadUpvotes();
 });

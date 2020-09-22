@@ -20,17 +20,19 @@ const getStoriesById = (storyid) => {
 };
 
 const getContributions = () => {
-  return db.query(`SELECT stories.*, contributions.*, users.*
+  return db.query(`SELECT stories.*, contributions.*, users.*, contributions.id as contributions_id, COUNT(upvotes.*) as count
   FROM contributions
   JOIN users ON contributions.user_id = users.id
-  JOIN stories ON contributions.story_id = stories.id`)
+  JOIN stories ON contributions.story_id = stories.id
+  FULL OUTER JOIN upvotes ON contributions.id = upvotes.contribution_id
+  group by stories.id, contributions.id, users.id`)
     .then((response) => {
       return response.rows;
     });
 };
 
 const getContributionsById = (contributionid) => {
-  return db.query(`SELECT stories.*, contributions.*, users.*
+  return db.query(`SELECT stories.*, contributions.*, users.*, contributions.id as contributions_id
   FROM contributions
   JOIN users ON contributions.user_id = users.id
   JOIN stories ON contributions.story_id = stories.id
@@ -39,6 +41,18 @@ const getContributionsById = (contributionid) => {
       return response.rows[0];
     });
 };
+
+const getUpvotes = () => {
+  return db.query(`select contributions.*, COUNT(upvotes.*)
+  from contributions join upvotes on contributions.id = upvotes.contribution_id
+  where contributions.id = upvotes.contribution_id
+  group by contributions.id;`)
+    .then((response) => {
+      return response.rows;
+    });
+};
+
+
 
 const getStoriesByUserId = (id) => {
   return db.query('SELECT * FROM stories WHERE stories.user_id = $1',[id])
@@ -63,6 +77,7 @@ module.exports = {
   getStoriesById,
   getContributions,
   getContributionsById,
+  getUpvotes,
   getStoriesByUserId,
   addStory
 };

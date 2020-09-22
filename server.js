@@ -44,6 +44,7 @@ app.use("/api/users/:userid", userRouter);
 app.use("/api/stories", storiesRouter);
 app.use("/api/stories/:storyid", storiesRouter);
 app.use("/api/contributions", contributionsRouter);
+app.use("/api/upvotes", upvotesRouter);
 // Note: mount other resources here, using the same pattern above
 
 
