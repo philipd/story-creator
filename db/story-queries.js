@@ -47,10 +47,22 @@ const getStoriesByUserId = (id) => {
     });
 };
 
+const addStory = (user_id, title, text) => {
+  return db.query(`
+    INSERT INTO stories
+      (user_id, title, text)
+    VALUES
+      ($1, $2, $3)
+  `,[user_id, title, text]).then(response => {
+    return response.rows;
+  });
+};
+
 module.exports = {
   getStories,
   getStoriesById,
   getContributions,
   getContributionsById,
-  getStoriesByUserId
+  getStoriesByUserId,
+  addStory
 };

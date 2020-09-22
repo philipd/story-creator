@@ -21,6 +21,11 @@ router.get("/story", (req, res) => {
   res.render("story", templateVars);
 });
 
+router.get("/newstory", (req, res) => {
+  let templateVars = { userid: req.session.userid };
+  res.render("newstory", templateVars);
+});
+
 router.get('/contributions/user/:userid', (req, res) => {
   let templateVars = { userid: req.session.userid };
   res.render("mycontributions", templateVars);

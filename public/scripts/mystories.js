@@ -6,10 +6,20 @@ const sampleStories = {
   ]
 };
 
+
 const createStoryElement = function(storyData) {
+  console.log(storyData)
   let $story = $('<article>').addClass('story');
-  let $title = $('<div>').addClass('title').text(storyData.title);
-  $story.append($title);
+  let $storyHeader = $(`
+  <article class="storyheader">
+    <p class="title"><a href="/stories/${storyData.id}">${storyData.title}</a></p>
+    <div class="icons">
+      <i id="storyupvote" class="far fa-heart fa-xs"></i>
+      <output class="upvotes">0</output>
+    </div>
+  </article>`);
+  let $text = $('<p>').addClass('storytext').text(storyData.text);
+  $story.append($storyHeader, $text, );
   return $story;
 };
 
