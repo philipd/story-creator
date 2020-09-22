@@ -8,7 +8,7 @@ router.get('/user/:userid', (req, res) => {
   getContributionsByUserId(req.params.userid)
     .then((contributions) => {
       res.json({ contributions });
-    })
+    });
 });
 
 // GET /contributions/
@@ -24,16 +24,25 @@ router.get('/:contributionid', (req, res) => {
   getContributionsById(req.params.contributionid)
     .then((contribution) => {
       res.json({ contribution });
-    })
+    });
 });
 
-// GET /contributions/:contributionid
 router.post('/:contributionid', (req, res) => {
   console.log(req.params);
   acceptContribution(req.params.contributionid)
     .then((contribution) => {
       res.json({ contribution });
-    })
+    });
+});
+
+router.post('/', (req, res) => {
+  console.log(req.body);
+  const user_id = req.session.userid;
+  const { story_id, chapter_number, ctext } = req.body;
+  addContribution( story_id, user_id, chapter_number, ctext )
+    .then((contribution) => {
+      res.json({ contribution });
+    });
 });
 
 module.exports = router;
