@@ -4,3 +4,4 @@ Stories and contributions have attachments
 Users can view list of recent received upvotes
 Users can search for stories by title, etc.
 Users can assign a genre to each genre
+Users can upvote stories

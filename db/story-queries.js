@@ -2,7 +2,13 @@ const db = require('./db');
 const { response } = require('express');
 
 const getStories = () => {
-  return db.query('SELECT * FROM stories;')
+  return db.query(`
+    SELECT stories.id as story_id, stories.title, stories.text, stories.status, users.name, users.id as user_id, users.avatar
+    FROM stories
+    JOIN users
+      ON stories.user_id = users.id
+    ORDER BY stories.id
+  ;`)
     .then((response) => {
       return response.rows;
     });
