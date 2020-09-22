@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const { getContributionsByUserId, acceptContribution } = require('../db/contribution-queries');
+const { getContributionsByUserId, acceptContribution, addContribution } = require('../db/contribution-queries');
 const { getContributionsById, getContributions } = require('../db/story-queries');
 
 // GET contributions by user id: /contributions/user/:userid
@@ -28,18 +28,17 @@ router.get('/:contributionid', (req, res) => {
 });
 
 router.post('/:contributionid', (req, res) => {
-  console.log(req.params);
   acceptContribution(req.params.contributionid)
     .then((contribution) => {
       res.json({ contribution });
     });
 });
 
-router.post('/', (req, res) => {
-  console.log(req.body);
+router.post('/:storyid/addcontribution', (req, res) => {
   const user_id = req.session.userid;
-  const { story_id, chapter_number, ctext } = req.body;
-  addContribution( story_id, user_id, chapter_number, ctext )
+  const story_id = req.params.storyid;
+  const { text } = req.body;
+  addContribution( story_id, user_id, text )
     .then((contribution) => {
       res.json({ contribution });
     });

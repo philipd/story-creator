@@ -59,7 +59,6 @@ const createContributionsContainer = function(contributionData) {
 
 const createAcceptedContainer = function(acceptedData) {
   let $accepted = $('<article>').addClass('accepted');
-  console.log('ACCEPTED DATA', acceptedData)
   let contributions = createContributionsContainer(acceptedData);
   $accepted.append(contributions);
   return ($accepted);
@@ -110,6 +109,17 @@ const loadContributions = function() {
     });
 };
 
+const $postContribution = $('#form');
+  $postContribution.on('submit', function(event) {
+    event.preventDefault();
+    const serializedData = $(this).serialize();
+    console.log('Serializedata', serializedData);
+
+    $.post('../api/contributions/'+ storyid + '/addcontribution', serializedData)
+      .then()
+        loadContributions();
+});
+
 // const loadUpvotes = function() {
 //   $.ajax('../api/upvotes/', { method: 'GET' })
 //     .then(function(response) {
@@ -125,7 +135,6 @@ const addEventListeners = function() {
     // console.log(contributionId);
     $.ajax('../api/contributions/' + contributionId, { method: 'POST' })
       .then(response => {
-        console.log(response);
         loadStories();
         loadAccepted();
       });

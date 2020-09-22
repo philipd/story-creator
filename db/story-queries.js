@@ -91,7 +91,6 @@ const getAcceptedContributionsByStoryId = (storyid) => {
     ORDER BY chapter_number ASC;
   `, [storyid])
     .then( response => {
-      console.log(response.rows)
       return response.rows;
     });
 };

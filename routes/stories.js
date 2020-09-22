@@ -34,11 +34,8 @@ router.get('/user/:userid', (req, res) => {
 });
 
 router.post('/', (req, res) => {
-  console.log(req.body);
-  console.log(req.session);
   addStory(req.session.userid, req.body.title, req.body.text)
     .then( response => {
-      console.log(response);
       return res.redirect('/stories/user/'+req.session.userid);
     })
 });

@@ -1,5 +1,6 @@
 const db = require('./db');
 const { response } = require('express');
+const { use } = require('../routes/pages');
 
 const getContributionsByUserId = (id) => {
   return db.query(`
@@ -24,6 +25,7 @@ const acceptContribution = (contributionId) => {
 };
 
 const addContribution = (storyId, userId, text) => {
+  console.log("new contribution info", storyId, userId, text)
   return db.query(`
     INSERT INTO contributions
       (story_id, user_id, ctext, chapter_number)
