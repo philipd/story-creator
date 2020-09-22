@@ -30,12 +30,12 @@ const addContribution = (storyId, userId, text) => {
     INSERT INTO contributions
       (story_id, user_id, ctext, chapter_number)
     VALUES
-      ($1, $2, $3, (
-        SELECT MAX(chapter_number+1)
+      ($1, $2, $3, COALESCE(
+        (SELECT MAX(chapter_number+1)
         FROM contributions
         WHERE story_id = $1
           AND accepted = true
-      ))
+      ), 1))
   ;`, [storyId, userId, text]);
 };
 
