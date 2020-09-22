@@ -2,7 +2,7 @@
 DROP TABLE IF EXISTS stories CASCADE;
 
 DROP TYPE IF EXISTS story_status;
-CREATE TYPE story_status AS ENUM ('complete', 'open', 'pending');
+CREATE TYPE story_status AS ENUM ('complete', 'open', 'closed');
 
 CREATE TABLE stories (
   id SERIAL PRIMARY KEY NOT NULL,

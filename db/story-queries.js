@@ -61,7 +61,7 @@ const getUpvotes = () => {
 
 
 const getStoriesByUserId = (id) => {
-  return db.query('SELECT * FROM stories WHERE stories.user_id = $1',[id])
+  return db.query('SELECT * FROM stories WHERE stories.user_id = $1', [id])
     .then((response) => {
       return response.rows;
     });
@@ -73,7 +73,7 @@ const addStory = (user_id, title, text) => {
       (user_id, title, text)
     VALUES
       ($1, $2, $3)
-  `,[user_id, title, text]).then(response => {
+  `, [user_id, title, text]).then(response => {
     return response.rows;
   });
 };
@@ -86,7 +86,21 @@ const getAcceptedContributionsByStoryId = (storyid) => {
       AND accepted = true
     ORDER BY chapter_number ASC;
   `, [storyid])
-    .then( response => {
+    .then(response => {
+      return response.rows;
+    });
+};
+
+const setStoryStatus = (storyid, userid, status) => {
+  // Not currently using userid, but eventually we might want
+  // to prohibit anyone but the story creator from changing the
+  // story status
+  return db.query(`
+    UPDATE stories
+    SET status = $2
+    WHERE story_id = $1
+  `, [storyid, status])
+    .then(response => {
       return response.rows;
     });
 };

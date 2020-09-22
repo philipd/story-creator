@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const { getStories, getStoriesById, getStoriesByUserId, addStory, getAcceptedContributionsByStoryId } = require('../db/story-queries');
+const { getStories, getStoriesById, getStoriesByUserId, addStory, getAcceptedContributionsByStoryId, setStoryStatus } = require('../db/story-queries');
 
 // GET /stories/
 router.get('/', (req, res) => {
@@ -31,6 +31,18 @@ router.get('/user/:userid', (req, res) => {
     .then((stories) => {
       res.json({ stories });
     })
+});
+
+router.post('/:storyid/complete', (req, res) => {
+  setStoryStatus(req.params.storyid, req.session.userid, 'complete')
+});
+
+router.post('/:storyid/open', (req, res) => {
+  setStoryStatus(req.params.storyid, req.session.userid, 'open')
+});
+
+router.post('/:storyid/closed', (req, res) => {
+  setStoryStatus(req.params.storyid, req.session.userid, 'closed')
 });
 
 router.post('/', (req, res) => {
