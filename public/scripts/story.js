@@ -27,8 +27,8 @@ const createStoryElement = function(storyData) {
 
 const createContributionsContainer = function(contributionData) {
   let output = '';
-  console.log(contributionData)
-  contributionData.sort(function(a,b) {
+  console.log(contributionData);
+  contributionData.sort(function(a, b) {
     return a.chapter_number - b.chapter_number;
   });
   for (contribution of contributionData) {
@@ -48,14 +48,14 @@ const createContributionsContainer = function(contributionData) {
         <p>${contribution.ctext}</p>
         <footer class="footer">
           <div class="contributionbuttons">
-            <button type="button">Delete Contribution</button>
-            <button type="button">Accept Contribution</button>
+            <button type="submit" data-contributionid="${contribution.contributions_id}" class="delete-btn">Delete Contribution</button>
+            <button type="submit" data-contributionid="${contribution.contributions_id}" class="accept-btn">Accept Contribution</button>
           </div>
         </footer>
       </article>`;
   }
   return output;
-}
+};
 
 const renderStories = function(story) {
   let $story = createStoryElement(story);
@@ -69,6 +69,7 @@ const renderContributions = function(contribution, upvotes) {
 
 const storyid = $("#page-data").attr("data-storyid");
 const loadStories = function() {
+  console.log('Loading stories ...');
   $.ajax('../api/stories/' + storyid, { method: 'GET' })
     .then(function(response) {
       renderStories(response.story);
@@ -81,7 +82,7 @@ const loadContributions = function() {
     .then(function(response) {
       for (let i = 0; i < response.contributions.length; i++) {
         if (response.contributions[i].story_id == storyid) {
-          storyContributions.push(response.contributions[i])
+          storyContributions.push(response.contributions[i]);
         }
       }
       renderContributions(storyContributions);
@@ -96,8 +97,22 @@ const loadContributions = function() {
 //     });
 // };
 
+const addEventListeners = function() {
+  $('#contributions-container').on('click', '.accept-btn', (event) => {
+    let contributionId = $(event.target).attr('data-contributionid');
+    // console.log(event.target);
+    // console.log(contributionId);
+    $.ajax('../api/contributions/' + contributionId, { method: 'POST' })
+      .then(response => {
+        console.log(response);
+        loadStories();
+      });
+  });
+};
+
 $(document).ready(() => {
   loadStories();
   loadContributions();
+  addEventListeners();
   // loadUpvotes();
 });

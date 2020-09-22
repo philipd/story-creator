@@ -3,5 +3,6 @@ Users can view top contributors (most upvotes/per contribution, with minimum num
 Stories and contributions have attachments
 Users can view list of recent received upvotes
 Users can search for stories by title, etc.
-Users can assign a genre to each genre
+Users can assign a genre to each story
 Users can upvote stories
+Night mode

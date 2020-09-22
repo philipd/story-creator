@@ -15,6 +15,15 @@ const getContributionsByUserId = (id) => {
     });
 };
 
+const acceptContribution = (contributionId) => {
+  return db.query(`
+    UPDATE contributions
+    SET accepted = true
+    WHERE id = $1
+  `, [contributionId]);
+
+};
+
 module.exports = {
-  getContributionsByUserId,
+  getContributionsByUserId, acceptContribution
 };
