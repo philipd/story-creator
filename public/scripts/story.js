@@ -27,7 +27,6 @@ const createStoryElement = function(storyData) {
 
 const createContributionsContainer = function(contributionData) {
   let output = '';
-  console.log(contributionData);
   contributionData.sort(function(a, b) {
     return a.chapter_number - b.chapter_number;
   });
@@ -57,7 +56,16 @@ const createContributionsContainer = function(contributionData) {
   return output;
 };
 
+
+const createAcceptedElement = function() {
+  let $accepted = $('<article>').addClass('accepted');
+
+
+  return ($accepted);
+};
+
 const renderStories = function(story) {
+  $('#story').empty();
   let $story = createStoryElement(story);
   $('#story').prepend($story);
 };
