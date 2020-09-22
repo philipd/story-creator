@@ -6,7 +6,7 @@ insert into contributions (id, story_id, user_id, chapter_number, ctext) values 
 insert into contributions (id, story_id, user_id, chapter_number, ctext) values (6, 44, 48, 10, 'In sagittis dui vel nisl. Duis ac nibh. Fusce lacus purus, aliquet at, feugiat non, pretium quis, lectus.');
 insert into contributions (id, story_id, user_id, chapter_number, ctext) values (7, 2, 65, 3, 'Sed ante. Vivamus tortor. Duis mattis egestas metus.');
 insert into contributions (id, story_id, user_id, chapter_number, ctext) values (8, 83, 84, 0, 'Morbi non lectus. Aliquam sit amet diam in magna bibendum imperdiet. Nullam orci pede, venenatis non, sodales sed, tincidunt eu, felis.');
-insert into contributions (id, story_id, user_id, chapter_number, ctext) values (9, 48, 99, 8, 'Nulla ut erat id mauris vulputate elementum. Nullam varius. Nulla facilisi.');
+insert into contributions (id, story_id, user_id, chapter_number, ctext) values (9, 6, 99, 8, 'Nulla ut erat id mauris vulputate elementum. Nullam varius. Nulla facilisi.');
 insert into contributions (id, story_id, user_id, chapter_number, ctext) values (10, 44, 48, 5, 'Cras non velit nec nisi vulputate nonummy. Maecenas tincidunt lacus at velit. Vivamus vel nulla eget eros elementum pellentesque.');
 insert into contributions (id, story_id, user_id, chapter_number, ctext) values (11, 193, 94, 9, 'Duis bibendum. Morbi non quam nec dui luctus rutrum. Nulla tellus.');
 insert into contributions (id, story_id, user_id, chapter_number, ctext) values (12, 167, 28, 10, 'Sed ante. Vivamus tortor. Duis mattis egestas metus.');

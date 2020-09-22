@@ -20,7 +20,10 @@ const getStoriesById = (storyid) => {
 };
 
 const getContributions = () => {
-  return db.query('SELECT * FROM contributions;')
+  return db.query(`SELECT stories.*, contributions.*, users.*
+  FROM contributions
+  JOIN users ON contributions.user_id = users.id
+  JOIN stories ON contributions.story_id = stories.id`)
     .then((response) => {
       return response.rows;
     });

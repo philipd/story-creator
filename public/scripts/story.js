@@ -25,28 +25,34 @@ const createStoryElement = function(storyData) {
   return $story;
 };
 
-const createContributionsContainer = function(storyData) {
-  let output = (
-    `<article class="contribution">
-      <article class="contribution-header">
-        <div id="contribution-author">
-          <span id="contribution-avatar"><img src=${storyData.avatar}></span>
-          <span id="contribution-handle">Username</span>
-        </div>
-        <p class="title">Part ${storyData.chapter_number}</p>
-        <div class="icons">
-          <i id="storyupvote" class="far fa-heart fa-xs"></i>
-          <output class="upvotes">0</output>
-        </div>
-      </article>
-      <p>${storyData.ctext}</p>
-      <footer class="footer">
-        <div class="contributionbuttons">
-          <button type="button">Delete Contribution</button>
-          <button type="button">Accept Contribution</button>
-        </div>
-      </footer>
-    </article>`);
+const createContributionsContainer = function(contributionData) {
+  let output = '';
+  contributionData.sort(function(a,b) {
+    return a.chapter_number - b.chapter_number;
+  });
+  for (contribution of contributionData) {
+    output +=
+      `<article class="contribution">
+        <article class="contribution-header">
+          <div id="contribution-author">
+            <span id="contribution-avatar"><img src=${contribution.avatar}></span>
+            <span id="contribution-handle">${contribution.name}</span>
+          </div>
+          <p class="title">Part ${contribution.chapter_number}</p>
+          <div class="icons">
+            <i id="storyupvote" class="far fa-heart fa-xs"></i>
+            <output class="upvotes">0</output>
+          </div>
+        </article>
+        <p>${contribution.ctext}</p>
+        <footer class="footer">
+          <div class="contributionbuttons">
+            <button type="button">Delete Contribution</button>
+            <button type="button">Accept Contribution</button>
+          </div>
+        </footer>
+      </article>`;
+  }
   return output;
 }
 
@@ -55,9 +61,16 @@ const renderStories = function(story) {
   $('#story').prepend($story);
 };
 
+const renderContributions = function(contribution) {
+  let $contribution = createContributionsContainer(contribution);
+  $('#contributions-container').append($contribution);
+};
+
+const storyid = $("#page-data").attr("data-storyid");
 const loadStories = function() {
-  $.ajax('../api/stories/' , { method: 'GET' })
+  $.ajax('../api/stories/' + storyid, { method: 'GET' })
     .then(function(response) {
+      console.log('Ajax response:', response);
       renderStories(response.story);
     });
 };
@@ -65,7 +78,14 @@ const loadStories = function() {
 const loadContributions = function() {
   $.ajax('../api/contributions/', { method: 'GET' })
     .then(function(response) {
-      console.log(response)
+      let storyContributions = [];
+      console.log('Ajax response:', response);
+      for (let i = 0; i < response.contributions.length; i++) {
+        if (response.contributions[i].story_id == storyid) {
+          storyContributions.push(response.contributions[i])
+        }
+      }
+      renderContributions(storyContributions);
     });
 };
 
