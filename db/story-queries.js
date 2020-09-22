@@ -78,6 +78,18 @@ const addStory = (user_id, title, text) => {
   });
 };
 
+const getAcceptedContributionsByStoryId = (storyid) => {
+  return db.query(`
+    SELECT id as contributions_id, story_id, user_id, chapter_number, ctext
+    FROM contributions
+    WHERE story_id = $1
+      AND accepted = true;
+  `, [storyid])
+    .then( response => {
+      return response.rows;
+    });
+};
+
 module.exports = {
   getStories,
   getStoriesById,
@@ -85,5 +97,6 @@ module.exports = {
   getContributionsById,
   getUpvotes,
   getStoriesByUserId,
-  addStory
+  addStory,
+  getAcceptedContributionsByStoryId
 };
