@@ -25,18 +25,6 @@ const getStoriesById = (storyid) => {
     });
 };
 
-const getContributions = () => {
-  return db.query(`SELECT stories.*, contributions.*, users.*, contributions.id as contributions_id, COUNT(upvotes.*) as count
-  FROM contributions
-  JOIN users ON contributions.user_id = users.id
-  JOIN stories ON contributions.story_id = stories.id
-  FULL OUTER JOIN upvotes ON contributions.id = upvotes.contribution_id
-  group by stories.id, contributions.id, users.id`)
-    .then((response) => {
-      return response.rows;
-    });
-};
-
 const getContributionsById = (contributionid) => {
   return db.query(`SELECT stories.*, contributions.*, users.*, contributions.id as contributions_id
   FROM contributions
@@ -78,15 +66,32 @@ const addStory = (user_id, title, text) => {
   });
 };
 
+const getContributions = () => {
+  return db.query(`SELECT stories.*, contributions.*, users.*, contributions.id as contributions_id, COUNT(upvotes.*) as count
+  FROM contributions
+  JOIN users ON contributions.user_id = users.id
+  JOIN stories ON contributions.story_id = stories.id
+  FULL OUTER JOIN upvotes ON contributions.id = upvotes.contribution_id
+  group by stories.id, contributions.id, users.id`)
+    .then((response) => {
+      return response.rows;
+    });
+};
+
 const getAcceptedContributionsByStoryId = (storyid) => {
   return db.query(`
-    SELECT id as contributions_id, story_id, user_id, chapter_number, ctext
+    SELECT contributions.id as contributions_id, story_id, contributions.user_id, chapter_number, ctext,  COUNT(upvotes.*) as count,  users.*
     FROM contributions
+    FULL OUTER JOIN upvotes ON contributions.id = upvotes.contribution_id
+    JOIN users ON contributions.user_id = users.id
+    JOIN stories ON contributions.story_id = stories.id
     WHERE story_id = $1
       AND accepted = true
+    GROUP by stories.id, contributions.id, users.id
     ORDER BY chapter_number ASC;
   `, [storyid])
     .then( response => {
+      console.log(response.rows)
       return response.rows;
     });
 };

@@ -57,10 +57,11 @@ const createContributionsContainer = function(contributionData) {
 };
 
 
-const createAcceptedElement = function() {
+const createAcceptedContainer = function(acceptedData) {
   let $accepted = $('<article>').addClass('accepted');
-
-
+  console.log('ACCEPTED DATA', acceptedData)
+  let contributions = createContributionsContainer(acceptedData);
+  $accepted.append(contributions);
   return ($accepted);
 };
 
@@ -81,6 +82,18 @@ const loadStories = function() {
   $.ajax('../api/stories/' + storyid, { method: 'GET' })
     .then(function(response) {
       renderStories(response.story);
+    });
+};
+const renderAccepted = function(accepted) {
+  $('#accepted').empty();
+  let $accepted = createAcceptedContainer(accepted);
+  $("#accepted").append($accepted)
+}
+
+const loadAccepted = function() {
+  $.ajax('../api/stories/' + storyid + '/accepted', { method: 'GET' })
+    .then(function(response) {
+      renderAccepted(response.story)
     });
 };
 
@@ -114,6 +127,7 @@ const addEventListeners = function() {
       .then(response => {
         console.log(response);
         loadStories();
+        loadAccepted();
       });
   });
 };
@@ -122,5 +136,6 @@ $(document).ready(() => {
   loadStories();
   loadContributions();
   addEventListeners();
+  loadAccepted();
   // loadUpvotes();
 });
