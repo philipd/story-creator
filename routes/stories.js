@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const { getStories, getStoriesById, getStoriesByUserId, addStory } = require('../db/story-queries');
+const { getStories, getStoriesById, getStoriesByUserId, addStory, getAcceptedContributionsByStoryId } = require('../db/story-queries');
 
 // GET /stories/
 router.get('/', (req, res) => {
@@ -8,6 +8,13 @@ router.get('/', (req, res) => {
     .then((stories) => {
       res.json({ stories });
     });
+});
+
+router.get('/:storyid/accepted', (req, res) => {
+  getAcceptedContributionsByStoryId(req.params.storyid)
+    .then((story) => {
+      res.json({ story });
+    })
 });
 
 // GET /stories/:storyid
