@@ -71,8 +71,9 @@ const renderStories = function(story) {
 };
 
 const renderContributions = function(contribution, upvotes) {
+  $('#erasingcontainer').empty();
   let $contribution = createContributionsContainer(contribution, upvotes);
-  $('#contributions-container').append($contribution);
+  $('#erasingcontainer').append($contribution);
 };
 
 const storyid = $("#page-data").attr("data-storyid");
@@ -114,10 +115,9 @@ const $postContribution = $('#form');
     event.preventDefault();
     const serializedData = $(this).serialize();
     console.log('Serializedata', serializedData);
-
     $.post('../api/contributions/'+ storyid + '/addcontribution', serializedData)
       .then()
-        loadContributions();
+
 });
 
 // const loadUpvotes = function() {
