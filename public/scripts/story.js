@@ -115,12 +115,12 @@ const loadContributions = function() {
 };
 
 const $postContribution = $('#form');
-  $postContribution.on('submit', function(event) {
-    event.preventDefault();
-    const serializedData = $(this).serialize();
-    console.log('Serializedata', serializedData);
-    $.post('../api/contributions/'+ storyid + '/addcontribution', serializedData)
-      .then()
+$postContribution.on('submit', function(event) {
+  event.preventDefault();
+  const serializedData = $(this).serialize();
+  console.log('Serializedata', serializedData);
+  $.post('../api/contributions/' + storyid + '/addcontribution', serializedData)
+    .then();
 
 });
 
@@ -147,7 +147,9 @@ const addEventListeners = function() {
     let contributionId = $(event.target).attr('data-contributionid');
     $.ajax('../api/upvotes/' + contributionId, { method: 'POST' })
       .then(response => {
+        const count = response.upvotes[0].count;
         $(event.target).toggleClass('red');
+        $(event.target).siblings('output').text(count);
       });
   });
 };
