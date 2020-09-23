@@ -1,6 +1,6 @@
 
 const createStoryElement = function(storyData) {
-  console.log(storyData);
+  // console.log(storyData);
   let $story = $('<article>').addClass('story');
   let $storyHeader = $(`
   <article class="storyheader" id="main-story" data-current-chapter="${storyData.current_chapter}">
@@ -41,7 +41,7 @@ const createContributionsContainer = function(contributionData) {
   });
   for (contribution of contributionData) {
     let heartClass = contribution.has_upvoted ? 'red' : '';
-    console.log(heartClass);
+    // console.log(heartClass);
     output +=
       `<article class="contribution">
         <article class="contribution-header">
@@ -112,10 +112,11 @@ const loadAccepted = function() {
     });
 };
 
-let storyContributions = [];
 const loadContributions = function() {
+  let storyContributions = [];
   $.ajax('../api/contributions/', { method: 'GET' })
     .then(function(response) {
+      $('#erasingcontainer').empty();
       let currentChapter = $('#main-story').attr('data-current-chapter');
       currentChapter = Number(currentChapter);
       for (let i = 0; i < response.contributions.length; i++) {
@@ -176,7 +177,7 @@ const addEventListeners = function() {
       .then(response => {
         loadStories();
         loadAccepted();
-        // window.scrollTo(0,0);
+        loadContributions();
         $("html, body").animate({ scrollTop: 0 }, "slow");
       });
   });
