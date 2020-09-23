@@ -179,7 +179,7 @@ const addEventListeners = function() {
       });
   });
 
-  $('#contributions-container').on('click', '.fa-heart', (event) => {
+  $('body').on('click', '.fa-heart', (event) => {
     let contributionId = $(event.target).attr('data-contributionid');
     $.ajax('../api/upvotes/' + contributionId, { method: 'POST' })
       .then(response => {
