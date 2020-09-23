@@ -35,14 +35,23 @@ router.get('/user/:userid', (req, res) => {
 
 router.post('/:storyid/complete', (req, res) => {
   setStoryStatus(req.params.storyid, req.session.userid, 'complete')
+  .then( response => {
+    res.json(response);
+  })
 });
 
 router.post('/:storyid/open', (req, res) => {
   setStoryStatus(req.params.storyid, req.session.userid, 'open')
+  .then( response => {
+    res.json(response);
+  })
 });
 
 router.post('/:storyid/closed', (req, res) => {
   setStoryStatus(req.params.storyid, req.session.userid, 'closed')
+  .then( response => {
+    res.json(response);
+  })
 });
 
 router.post('/', (req, res) => {

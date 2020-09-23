@@ -1,8 +1,9 @@
 
 const createStoryElement = function(storyData) {
+  console.log(storyData);
   let $story = $('<article>').addClass('story');
   let $storyHeader = $(`
-  <article class="storyheader">
+  <article class="storyheader" id="main-story" data-current-chapter="${storyData.current_chapter}">
     <div id="author">
     <span id="avatar"><img src=${storyData.avatar}></span>
     <span id="handle">${storyData.name}</span>
@@ -14,16 +15,24 @@ const createStoryElement = function(storyData) {
     </div>
   </article>`);
   let $text = $('<p>').addClass('storytext').text(storyData.text);
+  let $button;
+  if (storyData.status === 'complete') {
+    $button = $('<button>').attr('type', 'button').attr('id', 'open-btn').attr('data-storyid', storyData.story_id).text('Open for Contributions');
+  } else if (storyData.status === 'open') {
+    $button = $('<button>').attr('type', 'button').attr('id', 'end-btn').attr('data-storyid', storyData.story_id).text('End Story');
+  }
+
   let $footer = $(`
     <footer class="footer">
       <div id="storybuttons">
-        <button type="submit">End Story</button>
-        <button type="button">Open for Contributions</button>
       </div>
     </footer>`);
+  $($footer.find('#storybuttons')[0]).append($button);
   $story.append($storyHeader, $text, $footer);
   return $story;
 };
+// <button type="button" id="end-btn" data-storyid="${storyData.story_id}">End Story</button>
+// <button type="button" id="open-btn" data-storyid="${storyData.story_id}">Open for Contributions</button>
 
 const createContributionsContainer = function(contributionData) {
   let output = '';
@@ -79,6 +88,7 @@ const renderContributions = function(contribution, upvotes) {
 };
 
 const storyid = $("#page-data").attr("data-storyid");
+
 const loadStories = function() {
   console.log('Loading stories ...');
   $.ajax('../api/stories/' + storyid, { method: 'GET' })
@@ -86,18 +96,19 @@ const loadStories = function() {
       renderStories(response.story);
     });
 };
+
 const renderAccepted = function(accepted) {
   $('#accepted').empty();
   let $accepted = createAcceptedContainer(accepted);
-  $("#accepted").append($accepted)
+  $("#accepted").append($accepted);
   $('#accepted > article > article > footer').hide();
-}
+};
 
 const loadAccepted = function() {
   $.ajax('../api/stories/' + storyid + '/accepted', { method: 'GET' })
     .then(function(response) {
       // $('#story > article > footer').hide();  - HIDES STORY FOOTER (to be used with non owner)
-      renderAccepted(response.story)
+      renderAccepted(response.story);
     });
 };
 
@@ -105,8 +116,11 @@ let storyContributions = [];
 const loadContributions = function() {
   $.ajax('../api/contributions/', { method: 'GET' })
     .then(function(response) {
+      let currentChapter = $('#main-story').attr('data-current-chapter');
+      currentChapter = Number(currentChapter);
       for (let i = 0; i < response.contributions.length; i++) {
-        if (response.contributions[i].story_id == storyid) {
+        let contribution = response.contributions[i];
+        if (contribution.story_id == storyid && contribution.chapter_number === currentChapter) {
           storyContributions.push(response.contributions[i]);
         }
       }
@@ -132,6 +146,28 @@ $postContribution.on('submit', function(event) {
 // };
 
 const addEventListeners = function() {
+
+  $('#story').on('click', '#end-btn', event => {
+    console.log('End story');
+    const storyId = $(event.target).attr('data-storyid');
+    $.ajax('../api/stories/' + storyId + '/complete', { method: 'POST' })
+      .then(response => {
+        loadStories();
+        loadAccepted();
+      });
+  });
+
+  $('#story').on('click', '#open-btn', event => {
+    console.log('Open story');
+    const storyId = $(event.target).attr('data-storyid');
+    $.ajax('../api/stories/' + storyId + '/open', { method: 'POST' })
+      .then(response => {
+        console.log('hi');
+        loadStories();
+        loadAccepted();
+      });
+  });
+
   $('#contributions-container').on('click', '.accept-btn', (event) => {
     let contributionId = $(event.target).attr('data-contributionid');
     // console.log(event.target);
@@ -140,8 +176,11 @@ const addEventListeners = function() {
       .then(response => {
         loadStories();
         loadAccepted();
+        // window.scrollTo(0,0);
+        $("html, body").animate({ scrollTop: 0 }, "slow");
       });
   });
+
   $('#contributions-container').on('click', '.fa-heart', (event) => {
     let contributionId = $(event.target).attr('data-contributionid');
     $.ajax('../api/upvotes/' + contributionId, { method: 'POST' })
@@ -151,6 +190,7 @@ const addEventListeners = function() {
         $(event.target).siblings('output').text(count);
       });
   });
+
 };
 
 $(document).ready(() => {
