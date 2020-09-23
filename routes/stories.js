@@ -21,7 +21,7 @@ router.get('/:storyid/accepted', (req, res) => {
 router.get('/:storyid', (req, res) => {
   getStoriesById(req.params.storyid)
     .then((story) => {
-      res.json({ story });
+      res.json({ story, currentUser: req.session.userid });
     })
 });
 
