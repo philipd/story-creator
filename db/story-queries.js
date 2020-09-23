@@ -95,6 +95,7 @@ const getContributions = (user_id) => {
   FULL OUTER JOIN upvotes
     ON contributions.id = upvotes.contribution_id
   GROUP BY stories.id, contributions.id, users.id
+  ORDER BY contributions.id DESC
   `, [user_id])
     .then((response) => {
       return response.rows;
