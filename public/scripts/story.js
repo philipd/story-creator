@@ -102,8 +102,11 @@ const loadStories = function() {
   console.log('Loading stories ...');
   $.ajax('../api/stories/' + storyid, { method: 'GET' })
     .then(function(response) {
-      console.log(response);
       renderStories(response.story);
+      if (response.story.status == 'complete') {
+        $('body > main').hide();
+        $('#story > article > footer').hide()
+      }
     });
 };
 
@@ -157,7 +160,6 @@ $postContribution.on('submit', function(event) {
 // };
 
 const addEventListeners = function() {
-
   $('#story').on('click', '#end-btn', event => {
     console.log('End story');
     const storyId = $(event.target).attr('data-storyid');
@@ -165,6 +167,7 @@ const addEventListeners = function() {
       .then(response => {
         loadStories();
         loadAccepted();
+
       });
   });
 
