@@ -83,6 +83,7 @@ const getContributions = (user_id) => {
       (SELECT * FROM upvotes WHERE active = true AND user_id = $1 AND contribution_id = contributions.id)
       THEN true ELSE false END) as has_upvoted,
     stories.*,
+    stories.user_id as story_creator,
     contributions.*,
     users.*,
     contributions.id as contributions_id,

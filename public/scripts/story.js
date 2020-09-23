@@ -33,11 +33,17 @@ const createStoryElement = function(storyData) {
 // <button type="button" id="open-btn" data-storyid="${storyData.story_id}">Open for Contributions</button>
 
 const createContributionsContainer = function(contributionData) {
+  console.log(contributionData);
+  let currentUser = $('#page-data').attr('data-userid');
+  currentUser = Number(currentUser);
+
   let output = '';
   contributionData.sort(function(a, b) {
     return a.chapter_number - b.chapter_number;
   });
   for (contribution of contributionData) {
+    let storyCreator = contribution.story_creator;
+    // console.log('story creator', storyCreator, 'typeof', typeof storyCreator);
     let heartClass = contribution.has_upvoted ? 'red' : '';
     // console.log(heartClass);
     output +=
@@ -53,14 +59,19 @@ const createContributionsContainer = function(contributionData) {
             <output class="upvotes">${contribution.count}</output>
           </div>
         </article>
-        <p>${contribution.ctext}</p>
-        <footer class="footer">
+        <p>${contribution.ctext}</p>`;
+    if (currentUser === storyCreator) {
+      console.log('currentUser', currentUser, 'storyCreator', storyCreator);
+      // console.log('contributiondata', contributionData);
+      output += `<footer class="footer">
           <div class="contributionbuttons">
             <button type="submit" data-contributionid="${contribution.contributions_id}" class="delete-btn">Delete Contribution</button>
             <button type="submit" data-contributionid="${contribution.contributions_id}" class="accept-btn">Accept Contribution</button>
           </div>
-        </footer>
-      </article>`;
+        </footer>`;
+    }
+
+    output += `</article>`;
   }
   return output;
 };
@@ -91,6 +102,7 @@ const loadStories = function() {
   console.log('Loading stories ...');
   $.ajax('../api/stories/' + storyid, { method: 'GET' })
     .then(function(response) {
+      console.log(response);
       renderStories(response.story);
     });
 };
