@@ -11,7 +11,7 @@ router.get('/', (req, res) => {
 });
 
 router.get('/:storyid/accepted', (req, res) => {
-  getAcceptedContributionsByStoryId(req.params.storyid)
+  getAcceptedContributionsByStoryId(req.params.storyid, req.session.userid)
     .then((story) => {
       res.json({ story });
     })
