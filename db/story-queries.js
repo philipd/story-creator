@@ -72,6 +72,7 @@ const getContributions = () => {
   JOIN users ON contributions.user_id = users.id
   JOIN stories ON contributions.story_id = stories.id
   FULL OUTER JOIN upvotes ON contributions.id = upvotes.contribution_id
+  WHERE upvotes.active = true
   group by stories.id, contributions.id, users.id`)
     .then((response) => {
       return response.rows;
