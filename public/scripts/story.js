@@ -31,6 +31,8 @@ const createContributionsContainer = function(contributionData) {
     return a.chapter_number - b.chapter_number;
   });
   for (contribution of contributionData) {
+    let heartClass = contribution.has_upvoted ? 'red' : '';
+    console.log(heartClass);
     output +=
       `<article class="contribution">
         <article class="contribution-header">
@@ -40,7 +42,7 @@ const createContributionsContainer = function(contributionData) {
           </div>
           <p class="title">Part ${contribution.chapter_number}</p>
           <div class="icons">
-            <i data-contributionid="${contribution.contributions_id}" class="far fa-heart fa-xs"></i>
+            <i data-contributionid="${contribution.contributions_id}" class="far fa-heart fa-xs ${heartClass}"></i>
             <output class="upvotes">${contribution.count}</output>
           </div>
         </article>
