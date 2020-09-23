@@ -160,6 +160,7 @@ const addEventListeners = function() {
     const storyId = $(event.target).attr('data-storyid');
     $.ajax('../api/stories/' + storyId + '/open', { method: 'POST' })
       .then(response => {
+        console.log('hi');
         loadStories();
         loadAccepted();
       });

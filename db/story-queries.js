@@ -119,7 +119,7 @@ const setStoryStatus = (storyid, userid, status) => {
     WHERE id = $1
   `, [storyid, status])
     .then(response => {
-      return response.rows;
+      return response;
     });
 };
 
