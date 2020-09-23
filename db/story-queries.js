@@ -15,12 +15,22 @@ const getStories = () => {
 };
 
 const getStoriesById = (storyid) => {
-  return db.query(`SELECT stories.*, contributions.*, users.*
+  return db.query(`
+  SELECT stories.*,
+    contributions.*,
+    users.*,
+    COALESCE ((
+      SELECT MAX(chapter_number)+1
+      FROM contributions
+      WHERE accepted=true
+        AND story_id = stories.id
+    ), 1) as current_chapter
   FROM stories
   JOIN users ON stories.user_id = users.id
   LEFT OUTER JOIN contributions ON contributions.story_id = stories.id
   WHERE stories.id = $1`, [storyid])
     .then((response) => {
+      console.log(response.rows);
       return response.rows[0];
     });
 };
