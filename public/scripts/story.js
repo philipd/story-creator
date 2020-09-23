@@ -90,11 +90,13 @@ const renderAccepted = function(accepted) {
   $('#accepted').empty();
   let $accepted = createAcceptedContainer(accepted);
   $("#accepted").append($accepted)
+  $('#accepted > article > article > footer').hide();
 }
 
 const loadAccepted = function() {
   $.ajax('../api/stories/' + storyid + '/accepted', { method: 'GET' })
     .then(function(response) {
+      // $('#story > article > footer').hide();  - HIDES STORY FOOTER (to be used with non owner)
       renderAccepted(response.story)
     });
 };
@@ -155,5 +157,6 @@ $(document).ready(() => {
   loadContributions();
   addEventListeners();
   loadAccepted();
+
   // loadUpvotes();
 });
