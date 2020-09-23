@@ -66,14 +66,26 @@ const addStory = (user_id, title, text) => {
   });
 };
 
-const getContributions = () => {
-  return db.query(`SELECT stories.*, contributions.*, users.*, contributions.id as contributions_id, COUNT(upvotes.*) as count
+const getContributions = (user_id) => {
+  return db.query(`
+  SELECT
+    (CASE WHEN EXISTS
+      (SELECT * FROM upvotes WHERE active = true AND user_id = $1 AND contribution_id = contributions.id)
+      THEN true ELSE false END) as has_upvoted,
+    stories.*,
+    contributions.*,
+    users.*,
+    contributions.id as contributions_id,
+    COUNT(case when upvotes.active then upvotes.* end) as count
   FROM contributions
-  JOIN users ON contributions.user_id = users.id
-  JOIN stories ON contributions.story_id = stories.id
-  FULL OUTER JOIN upvotes ON contributions.id = upvotes.contribution_id
-  WHERE upvotes.active = true
-  group by stories.id, contributions.id, users.id`)
+  JOIN users
+    ON contributions.user_id = users.id
+  JOIN stories
+    ON contributions.story_id = stories.id
+  FULL OUTER JOIN upvotes
+    ON contributions.id = upvotes.contribution_id
+  GROUP BY stories.id, contributions.id, users.id
+  `, [user_id])
     .then((response) => {
       return response.rows;
     });

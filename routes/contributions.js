@@ -13,7 +13,7 @@ router.get('/user/:userid', (req, res) => {
 
 // GET /contributions/
 router.get('/', (req, res) => {
-  getContributions()
+  getContributions(req.session.userid)
     .then((contributions) => {
       res.json({ contributions });
     });
