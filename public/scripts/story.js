@@ -10,8 +10,6 @@ const createStoryElement = function(storyData) {
     </div>
     <p class="title">${storyData.title}</p>
     <div class="icons">
-      <i id="storyupvote" class="far fa-heart fa-xs"></i>
-      <output class="upvotes">0</output>
     </div>
   </article>`);
   let $text = $('<p>').addClass('storytext').text(storyData.text);
@@ -84,7 +82,7 @@ const renderStories = function(story) {
 const renderContributions = function(contribution, upvotes) {
   $('#erasingcontainer').empty();
   let $contribution = createContributionsContainer(contribution, upvotes);
-  $('#erasingcontainer').append($contribution);
+  $('#erasingcontainer').prepend($contribution);
 };
 
 const storyid = $("#page-data").attr("data-storyid");
@@ -182,7 +180,7 @@ const addEventListeners = function() {
       });
   });
 
-  $('#contributions-container').on('click', '.fa-heart', (event) => {
+  $('body').on('click', '.fa-heart', (event) => {
     let contributionId = $(event.target).attr('data-contributionid');
     $.ajax('../api/upvotes/' + contributionId, { method: 'POST' })
       .then(response => {
