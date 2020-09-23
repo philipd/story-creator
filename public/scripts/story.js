@@ -116,7 +116,6 @@ const loadContributions = function() {
 
 const $postContribution = $('#form');
 $postContribution.on('submit', function(event) {
-  event.preventDefault();
   const serializedData = $(this).serialize();
   console.log('Serializedata', serializedData);
   $.post('../api/contributions/' + storyid + '/addcontribution', serializedData)
