@@ -40,7 +40,7 @@ const createContributionsContainer = function(contributionData) {
           </div>
           <p class="title">Part ${contribution.chapter_number}</p>
           <div class="icons">
-            <i id="storyupvote" class="far fa-heart fa-xs"></i>
+            <i data-contributionid="${contribution.contributions_id}" class="far fa-heart fa-xs"></i>
             <output class="upvotes">${contribution.count}</output>
           </div>
         </article>
@@ -137,6 +137,13 @@ const addEventListeners = function() {
       .then(response => {
         loadStories();
         loadAccepted();
+      });
+  });
+  $('#contributions-container').on('click', '.fa-heart', (event) => {
+    let contributionId = $(event.target).attr('data-contributionid');
+    $.ajax('../api/upvotes/' + contributionId, { method: 'POST' })
+      .then(response => {
+        $(event.target).toggleClass('red');
       });
   });
 };
