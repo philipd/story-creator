@@ -3,7 +3,7 @@ const createStoryElement = function(storyData) {
   console.log(storyData);
   let $story = $('<article>').addClass('story');
   let $storyHeader = $(`
-  <article class="storyheader">
+  <article class="storyheader" id="main-story" data-current-chapter="${storyData.current_chapter}">
     <div id="author">
     <span id="avatar"><img src=${storyData.avatar}></span>
     <span id="handle">${storyData.name}</span>
@@ -116,8 +116,11 @@ let storyContributions = [];
 const loadContributions = function() {
   $.ajax('../api/contributions/', { method: 'GET' })
     .then(function(response) {
+      let currentChapter = $('#main-story').attr('data-current-chapter');
+      currentChapter = Number(currentChapter);
       for (let i = 0; i < response.contributions.length; i++) {
-        if (response.contributions[i].story_id == storyid) {
+        let contribution = response.contributions[i];
+        if (contribution.story_id == storyid && contribution.chapter_number === currentChapter) {
           storyContributions.push(response.contributions[i]);
         }
       }
