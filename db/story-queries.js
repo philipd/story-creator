@@ -114,7 +114,7 @@ const getAcceptedContributionsByStoryId = (storyid, userid) => {
       contributions.user_id,
       chapter_number,
       ctext,
-      COUNT(upvotes.*) as count,
+    COUNT(case when upvotes.active then upvotes.* end) as count,
       users.*
     FROM contributions
     FULL OUTER JOIN upvotes ON contributions.id = upvotes.contribution_id
