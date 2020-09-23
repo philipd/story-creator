@@ -112,10 +112,11 @@ const setStoryStatus = (storyid, userid, status) => {
   // Not currently using userid, but eventually we might want
   // to prohibit anyone but the story creator from changing the
   // story status
+  console.log(storyid, userid, status);
   return db.query(`
     UPDATE stories
     SET status = $2
-    WHERE story_id = $1
+    WHERE id = $1
   `, [storyid, status])
     .then(response => {
       return response.rows;
@@ -130,5 +131,6 @@ module.exports = {
   getUpvotes,
   getStoriesByUserId,
   addStory,
-  getAcceptedContributionsByStoryId
+  getAcceptedContributionsByStoryId,
+  setStoryStatus
 };
