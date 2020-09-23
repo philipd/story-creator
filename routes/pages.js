@@ -46,5 +46,14 @@ router.get('/logout', (req, res) => {
   return res.redirect('/');
 });
 
+router.get("/", (req, res) => {
+  if (req.session.userid) {
+    res.redirect('/stories');
+  } else {
+    let templateVars = { userid: undefined };
+    res.render("index", templateVars);
+  }
+});
+
 module.exports = router;
 

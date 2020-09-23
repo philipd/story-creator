@@ -103,9 +103,19 @@ const getContributions = (user_id) => {
     });
 };
 
-const getAcceptedContributionsByStoryId = (storyid) => {
+const getAcceptedContributionsByStoryId = (storyid, userid) => {
   return db.query(`
-    SELECT contributions.id as contributions_id, story_id, contributions.user_id, chapter_number, ctext,  COUNT(upvotes.*) as count,  users.*
+    SELECT
+      (CASE WHEN EXISTS
+        (SELECT * FROM upvotes WHERE active = true AND user_id = $2 AND contribution_id = contributions.id)
+        THEN true ELSE false END) as has_upvoted,
+      contributions.id as contributions_id,
+      story_id,
+      contributions.user_id,
+      chapter_number,
+      ctext,
+    COUNT(case when upvotes.active then upvotes.* end) as count,
+      users.*
     FROM contributions
     FULL OUTER JOIN upvotes ON contributions.id = upvotes.contribution_id
     JOIN users ON contributions.user_id = users.id
@@ -114,7 +124,7 @@ const getAcceptedContributionsByStoryId = (storyid) => {
       AND accepted = true
     GROUP by stories.id, contributions.id, users.id
     ORDER BY chapter_number ASC;
-  `, [storyid])
+  `, [storyid, userid])
     .then(response => {
       return response.rows;
     });

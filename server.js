@@ -51,10 +51,6 @@ app.use("/api/upvotes", upvotesRouter);
 // Home page
 // Warning: avoid creating more routes in this file!
 // Separate them into separate routes files (see above).
-app.get("/", (req, res) => {
-  let templateVars = { userid: undefined };
-  res.render("index", templateVars);
-});
 
 
 app.listen(PORT, () => {
