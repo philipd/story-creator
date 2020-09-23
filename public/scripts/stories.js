@@ -1,9 +1,3 @@
-const sampleStories = { stories: [
-  { userId: 1, title: 'Midnight\'s Children' },
-  { userId: 1, title: 'The Crying of Lot 49' },
-  { userId: 2, title: 'Oryx and Crake' }
-]};
-
 const createStoryElement = function(storyData) {
   console.log(storyData)
   let $story = $('<article>').addClass('story');
