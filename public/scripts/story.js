@@ -1,6 +1,6 @@
 
 const createStoryElement = function(storyData) {
-  // console.log(storyData);
+  console.log('storydata', storyData);
   let $story = $('<article>').addClass('story');
   let $storyHeader = $(`
   <article class="storyheader" id="main-story" data-current-chapter="${storyData.current_chapter}">
