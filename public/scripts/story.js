@@ -1,6 +1,8 @@
 
 const createStoryElement = function(storyData) {
   console.log('storydata', storyData);
+  let currentUser = Number($('#page-data').attr('data-userid'));
+  let storyCreator = storyData.user_id;
   let $story = $('<article>').addClass('story');
   let $storyHeader = $(`
   <article class="storyheader" id="main-story" data-current-chapter="${storyData.current_chapter}">
@@ -19,13 +21,15 @@ const createStoryElement = function(storyData) {
   } else if (storyData.status === 'open') {
     $button = $('<button>').attr('type', 'button').attr('id', 'end-btn').attr('data-storyid', storyData.story_id).text('End Story');
   }
-
   let $footer = $(`
     <footer class="footer">
       <div id="storybuttons">
       </div>
     </footer>`);
-  $($footer.find('#storybuttons')[0]).append($button);
+  console.log(currentUser, storyCreator);
+  if (currentUser === storyCreator) {
+    $($footer.find('#storybuttons')[0]).append($button);
+  }
   $story.append($storyHeader, $text, $footer);
   return $story;
 };
@@ -105,7 +109,7 @@ const loadStories = function() {
       renderStories(response.story);
       if (response.story.status == 'complete') {
         $('body > main').hide();
-        $('#story > article > footer').hide()
+        $('#story > article > footer').hide();
       }
     });
 };
