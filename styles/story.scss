@@ -55,14 +55,6 @@ header, nav {
   justify-content: space-between;
 }
 
-// #avatar {
-//   margin-left: 1em;
-// }
-
-// #handle {
-//   margin-left: 1em;
-// }
-
 .upvotes {
   font-size:0.85em;
   margin-right: 1em
@@ -98,6 +90,7 @@ header, nav {
   align-items: center;
   flex-direction: column;
   justify-content: space-between;
+  font-weight: 600;
 }
 .icons {
   width: 6em;
@@ -211,6 +204,11 @@ article.story {
   margin-top: 1em;
 }
 
+#contributions-container > h2 {
+  font-size: 2em;
+  font-weight: 600;
+}
+
 .contribution {
   max-width: 1920px;
   width: 100%;
@@ -232,6 +230,7 @@ article.story {
   align-items: center;
   flex-direction: column;
   justify-content: space-between;
+  font-weight: 600;
 }
 
 .contribution-header {
