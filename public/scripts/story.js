@@ -8,7 +8,7 @@ const createStoryElement = function(storyData) {
   <article class="storyheader" id="main-story" data-current-chapter="${storyData.current_chapter}">
     <div id="author">
     <span id="avatar"><img src=${storyData.avatar}></span>
-    <span id="handle">${storyData.name}</span>
+    <span id="handle"><a href="/stories/user/${storyData.user_id}">${storyData.name}</a></span>
     </div>
     <p class="title">${storyData.title}</p>
     <div class="icons">
@@ -55,7 +55,7 @@ const createContributionsContainer = function(contributionData) {
         <article class="contribution-header">
           <div id="contribution-author">
             <span id="contribution-avatar"><img src=${contribution.avatar}></span>
-            <span id="contribution-handle">${contribution.name}</span>
+            <span id="contribution-handle"><a href="/stories/user/${contribution.user_id}">${contribution.name}</a></span>
           </div>
           <p class="title">Part ${contribution.chapter_number}</p>
           <div class="icons">

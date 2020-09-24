@@ -5,7 +5,7 @@ const createStoryElement = function(storyData) {
   <article class="storyheader">
     <div id="author">
     <span id="avatar"><img src=${storyData.avatar}></span>
-    <span id="handle">${storyData.name}</span>
+    <span id="handle"><a href="/stories/user/${storyData.user_id}">${storyData.name}</a></span>
     </div>
     <p class="title"><a href="/stories/${storyData.story_id}">${storyData.title}</a></p>
   </article>`);
