@@ -163,6 +163,17 @@ article.story {
   background-color: rgba(52, 83, 170, 0.35);
 }
 
+#the-end {
+  width: 6em;
+  font-weight: 600;
+  font-size: 1.5em;
+  text-align: center;
+  border: #0b0435;
+  border-style: solid;
+  background-color: rgb(196, 238, 234);
+  margin-bottom: 0.5em;
+}
+
 .container {
   display: flex;
   flex-direction: column;
