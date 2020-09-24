@@ -2,31 +2,49 @@ const express = require('express');
 const router = express.Router();
 
 router.get('/stories/user/:authorid', (req, res) => {
+  if(!req.session.userid)
+    return res.redirect('/');
+
   let templateVars = { userid: req.session.userid, authorid: req.params.authorid };
   res.render("mystories", templateVars);
 });
 
 router.get('/stories/:storyid', (req, res) => {
+  if(!req.session.userid)
+    return res.redirect('/');
+
   let templateVars = { userid: req.session.userid, storyid: req.params.storyid };
   res.render("story", templateVars);
 });
 
 router.get('/stories', (req, res) => {
+  if(!req.session.userid)
+    return res.redirect('/');
+
   let templateVars = { userid: req.session.userid };
   res.render("stories", templateVars);
 });
 
 router.get("/story", (req, res) => {
+  if(!req.session.userid)
+    return res.redirect('/');
+
   let templateVars = { userid: req.session.userid, storyid: req.params.storyid };
   res.render("story", templateVars);
 });
 
 router.get("/newstory", (req, res) => {
+  if(!req.session.userid)
+    return res.redirect('/');
+
   let templateVars = { userid: req.session.userid };
   res.render("newstory", templateVars);
 });
 
 router.get('/contributions/user/:userid', (req, res) => {
+  if(!req.session.userid)
+    return res.redirect('/');
+
   let templateVars = { userid: req.session.userid };
   res.render("mycontributions", templateVars);
 });
