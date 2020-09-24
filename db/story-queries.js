@@ -74,9 +74,9 @@ const getStoriesByUserId = (id) => {
       users.name,
       users.avatar
     FROM stories
-    JOIN users
+    FULL OUTER JOIN users
       ON stories.user_id = users.id
-    WHERE stories.user_id = $1
+    WHERE users.id = $1
   `, [id])
     .then((response) => {
       return response.rows;
