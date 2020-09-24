@@ -22,6 +22,7 @@ const createStoryElement = function(storyData) {
   if (storyData.status === 'complete') {
     $theEnd = $('<div>').attr('id', 'the-end').text('THE END!');
   } else if (storyData.status === 'closed') {
+    $('#form').hide();
     $endButton = $('<button>').attr('type', 'button').attr('id', 'end-btn').attr('data-storyid', storyData.story_id).text('End Story');
     $openButton = $('<button>').attr('type', 'button').attr('id', 'open-btn').attr('data-storyid', storyData.story_id).text('Open for Contributions');
   } else if (storyData.status === 'open') {
