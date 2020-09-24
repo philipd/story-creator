@@ -8,6 +8,8 @@ const createStoryElement = function(storyData) {
     <span id="handle"><a href="/stories/user/${storyData.user_id}">${storyData.name}</a></span>
     </div>
     <p class="title"><a href="/stories/${storyData.story_id}">${storyData.title}</a></p>
+    <div class="icons">
+    </div>
   </article>`);
   let $text = $('<p>').addClass('storytext').text(storyData.text);
   let $footer = $(`

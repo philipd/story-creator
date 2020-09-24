@@ -27,12 +27,26 @@ header, nav {
   font-weight: 600;
 }
 
+#story {
+  width: 100%;
+  margin-top: 0.5em;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#stories {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 0.5em;
+}
+
 .storyheader {
+  width: 100%;
   display: flex;
   flex-direction: row;
-  align-content: flex-end;
-  align-items: center;
-  justify-content: space-between;
   border-bottom: #413e38;
   border-style: solid;
   border-right-style:none;
@@ -40,13 +54,13 @@ header, nav {
   border-left-style: none;
 }
 
-#avatar {
-  margin-left: 1em;
-}
+// #avatar {
+//   margin-left: 1em;
+// }
 
-#handle {
-  margin-left: 1em;
-}
+// #handle {
+//   margin-left: 1em;
+// }
 
 .upvotes {
   font-size:0.85em;
@@ -58,25 +72,41 @@ header, nav {
 }
 
 .title {
-  font-size: 2em;
+  display: flex;
+  width: 24em;
+  font-size: 1.5em;
   font-weight: 600;
-  margin-bottom: -0.25em;
-  margin-right: 0.5em;
+  margin-bottom: 0;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 
 #author {
+  width: 6em;
   display: flex;
   align-items: center;
   flex-direction: column;
   justify-content: space-between;
 }
+.icons {
+  width: 6em;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-end;
+}
 
 article.story {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  align-content: center;
+  justify-content: center;
   width: 95%;
   border:  #413e38;
   border-style: solid;
   border-width: thick;
-  margin: 1em;
   background-color: rgb(196, 238, 234);
 }
 
@@ -106,19 +136,44 @@ article.story {
   margin-bottom: 0.25em;
 }
 
+#accepted {
+  width: 100%;
+  margin: 1em;
+  margin-top: 0.25em;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.accepted {
+  width: 95%;
+}
+
+#story-container {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border:  #0b0435;
+  border-style: solid;
+  border-width: thick;
+  background-color: rgba(52, 83, 170, 0.35);
+}
+
 .container {
   display: flex;
   flex-direction: column;
+  align-items: center;
   max-width: 1920px;
-  width: 95%;
-  margin: 1em;
-  margin-top:0;
+  width: 100%;
+  margin-top: 1em;
   padding: 0;
 }
 
 #form {
-  width: 100%;
+  width: 95%;
   display: flex;
+  margin-top: 1em;
   flex-direction: column;
   align-items: center;
   border:  #413e38;
@@ -130,6 +185,10 @@ article.story {
 #contribution-text {
   width: 99%;
   resize: none;
+}
+
+#erasingcontainer {
+  width: 95%;
 }
 
 #contributions-container {
@@ -153,13 +212,16 @@ article.story {
   border-style: solid;
   border-width: thick;
   background-color: rgb(196, 238, 234);
+  margin-top: 0.25em;
 }
+
+
 #contribution-author {
+  width: 6em;
   display: flex;
   align-items: center;
   flex-direction: column;
   justify-content: space-between;
-  margin-left: 1em;
 }
 
 .contribution-header {
@@ -174,6 +236,21 @@ article.story {
   border-top-style: none;
   border-left-style: none;
 }
+#stories > article> article > p {
+  width: 100%
+}
+
+#story > article > p {
+  width: 95%;
+  text-align: justify;
+}
+
+
+
+#accepted > article > article > p {
+  width: 95%;
+  text-align: justify;
+}
 
 .contributionbuttons {
   width: 100%;
@@ -182,5 +259,19 @@ article.story {
   align-items: center;
   justify-content: space-between;
 }
+
+#stories > article {
+  margin-top: 0.5em;
+}
+
+#erasingcontainer > article > p {
+  display: flex;
+  width: 95%;
+  flex-direction: column;
+  align-items: center;
+  align-content: center;
+  text-align: justify;
+}
+
 
 }

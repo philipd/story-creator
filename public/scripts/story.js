@@ -59,7 +59,7 @@ const createContributionsContainer = function(contributionData) {
           </div>
           <p class="title">Part ${contribution.chapter_number}</p>
           <div class="icons">
-            <i data-contributionid="${contribution.contributions_id}" class="far fa-heart fa-xs ${heartClass}"></i>
+            <i data-contributionid="${contribution.contributions_id}" class="far fa-heart fa-xs ${heartClass}">&nbsp;</i>
             <output class="upvotes">${contribution.count}</output>
           </div>
         </article>
