@@ -1,12 +1,14 @@
 
 const createStoryElement = function(storyData) {
-  // console.log(storyData);
+  console.log('storydata', storyData);
+  let currentUser = Number($('#page-data').attr('data-userid'));
+  let storyCreator = storyData.user_id;
   let $story = $('<article>').addClass('story');
   let $storyHeader = $(`
   <article class="storyheader" id="main-story" data-current-chapter="${storyData.current_chapter}">
     <div id="author">
     <span id="avatar"><img src=${storyData.avatar}></span>
-    <span id="handle">${storyData.name}</span>
+    <span id="handle"><a href="/stories/user/${storyData.user_id}">${storyData.name}</a></span>
     </div>
     <p class="title">${storyData.title}</p>
     <div class="icons">
@@ -19,13 +21,15 @@ const createStoryElement = function(storyData) {
   } else if (storyData.status === 'open') {
     $button = $('<button>').attr('type', 'button').attr('id', 'end-btn').attr('data-storyid', storyData.story_id).text('End Story');
   }
-
   let $footer = $(`
     <footer class="footer">
       <div id="storybuttons">
       </div>
     </footer>`);
-  $($footer.find('#storybuttons')[0]).append($button);
+  console.log(currentUser, storyCreator);
+  if (currentUser === storyCreator) {
+    $($footer.find('#storybuttons')[0]).append($button);
+  }
   $story.append($storyHeader, $text, $footer);
   return $story;
 };
@@ -51,7 +55,7 @@ const createContributionsContainer = function(contributionData) {
         <article class="contribution-header">
           <div id="contribution-author">
             <span id="contribution-avatar"><img src=${contribution.avatar}></span>
-            <span id="contribution-handle">${contribution.name}</span>
+            <span id="contribution-handle"><a href="/stories/user/${contribution.user_id}">${contribution.name}</a></span>
           </div>
           <p class="title">Part ${contribution.chapter_number}</p>
           <div class="icons">
@@ -105,7 +109,7 @@ const loadStories = function() {
       renderStories(response.story);
       if (response.story.status == 'complete') {
         $('body > main').hide();
-        $('#story > article > footer').hide()
+        $('#story > article > footer').hide();
       }
     });
 };

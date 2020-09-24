@@ -16,9 +16,14 @@ const getStories = () => {
 
 const getStoriesById = (storyid) => {
   return db.query(`
-  SELECT stories.*,
-    contributions.*,
-    users.*,
+  SELECT
+    users.id as user_id,
+    users.avatar,
+    users.name,
+    stories.status,
+    stories.id as story_id,
+    stories.text,
+    stories.title,
     COALESCE ((
       SELECT MAX(chapter_number)+1
       FROM contributions
