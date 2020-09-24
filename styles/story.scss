@@ -52,6 +52,7 @@ header, nav {
   border-right-style:none;
   border-top-style: none;
   border-left-style: none;
+  justify-content: space-between;
 }
 
 // #avatar {
@@ -69,6 +70,14 @@ header, nav {
 
 .red {
   color: red;
+}
+
+#main-story > div.icons  {
+  width: 6em;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-end;
 }
 
 .title {
