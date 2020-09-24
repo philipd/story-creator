@@ -1,8 +1,19 @@
+function getParameterByName(name, url) {
+    if (!url) url = window.location.href;
+    name = name.replace(/[\[\]]/g, '\\$&');
+    var regex = new RegExp('[?&]' + name + '(=([^&#]*)|&|#|$)'),
+        results = regex.exec(url);
+    if (!results) return null;
+    if (!results[2]) return '';
+    return decodeURIComponent(results[2].replace(/\+/g, ' '));
+}
+
 const createStoryElement = function(storyData) {
+  console.log('storydata', storyData);
   let $story = $('<article>').addClass('story');
   let $storyHeader = $(`
   <article class="storyheader">
-    <p class="title"><a href="/stories/${storyData.id}">${storyData.title}</a></p>
+    <p class="title"><a href="/stories/${storyData.story_id}">${storyData.title}</a></p>
   </article>`);
   let $text = $('<p>').addClass('storytext').text(storyData.text);
   $story.append($storyHeader, $text,);
@@ -11,9 +22,11 @@ const createStoryElement = function(storyData) {
 
 const createUserElement = function(storyData) {
   console.log(storyData);
+  let avatarURL = storyData.avatar.substring(0, storyData.avatar.indexOf('?'));
+  avatarURL += '?size=100x100&set=set1';
   const $userDiv = $('<div>').attr('id', 'user-info');
   const $userHandle = $('<div>').attr('id', 'user-handle').text(storyData.name);
-  const $userAvatar = $('<img>').attr('src', storyData.avatar);
+  const $userAvatar = $('<img>').attr('src', avatarURL);
   $userDiv.append($userAvatar, $userHandle);
   return $userDiv;
 };
