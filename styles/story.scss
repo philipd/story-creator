@@ -246,6 +246,35 @@ article.story {
   font-weight: 600;
 }
 
+#pending {
+  display: flex;
+  justify-items: center;
+  padding:0.3em;
+  padding-top: 0;
+  padding-bottom: 0;
+  color: rgb(16, 16, 163);
+  background-color: rgba(80, 117, 218, 0.25);
+  font-size: 2em;
+  font-variant-caps: small-caps;
+  font-weight: 700;
+  border: #100453;
+  border-style: solid;
+  border-width: 4px;
+  text-shadow: 0 1px 0 rgb(137, 192, 209),
+               0 2px 0 rgb(137, 192, 209),
+               0 3px 0 rgb(137, 192, 209),
+               0 4px 0 rgb(137, 192, 209),
+               0 5px 0 rgb(137, 192, 209),
+               0 6px 1px rgba(0,0,0,.1),
+               0 0 5px rgba(0,0,0,.1),
+               0 1px 3px rgba(0,0,0,.3),
+               0 3px 5px rgba(0,0,0,.2),
+               0 5px 10px rgba(0,0,0,.25),
+               0 10px 10px rgba(0,0,0,.2),
+               0 20px 20px rgba(0,0,0,.15);
+
+}
+
 .contribution-header {
   display: flex;
   width:100%;
