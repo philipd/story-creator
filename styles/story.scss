@@ -82,6 +82,7 @@ header, nav {
   align-items: center;
   justify-content: center;
   text-align: center;
+  font-variant: small-caps;
 }
 
 #author {
@@ -92,6 +93,7 @@ header, nav {
   justify-content: space-between;
   font-weight: 600;
 }
+
 .icons {
   width: 6em;
   display: flex;
@@ -115,7 +117,7 @@ article.story {
 
 .storytext {
   margin-left: 1em;
-  margin-right: 1em
+  margin-right: 1em;
 }
 
 .footer {
@@ -265,8 +267,6 @@ article.story {
   text-align: justify;
 }
 
-
-
 #accepted > article > article > p {
   width: 95%;
   text-align: justify;
@@ -293,5 +293,8 @@ article.story {
   text-align: justify;
 }
 
+.status {
+  font-family: fantasy;
+}
 
 }
