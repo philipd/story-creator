@@ -24,6 +24,13 @@ const acceptContribution = (contributionId) => {
   `, [contributionId]);
 };
 
+const deleteContribution = (contributionId) => {
+  return db.query(`
+    DELETE FROM contributions
+    WHERE id = $1
+  `, [contributionId]);
+};
+
 const addContribution = (storyId, userId, text) => {
   console.log("new contribution info", storyId, userId, text)
   return db.query(`
@@ -42,5 +49,5 @@ const addContribution = (storyId, userId, text) => {
 // insert into contributions (story_id, user_id, ctext, chapter_number) values (2, 1, 'Ground control to Major Tom', (SELECT MAX(chapter_number+1) FROM contributions where story_id = 2 AND accepted = true));
 
 module.exports = {
-  getContributionsByUserId, acceptContribution, addContribution
+  getContributionsByUserId, acceptContribution, addContribution, deleteContribution
 };

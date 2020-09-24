@@ -226,6 +226,19 @@ const addEventListeners = function() {
       });
   });
 
+  $('#contributions-container').on('click', '.delete-btn', (event) => {
+    let contributionId = $(event.target).attr('data-contributionid');
+    // console.log(event.target);
+    // console.log(contributionId);
+    $.ajax('../api/contributions/' + contributionId + '/delete', { method: 'POST' })
+      .then(response => {
+        loadStories();
+        loadAccepted();
+        loadContributions();
+        $('#story-container > footer').hide();
+      });
+  });
+
   $('body').on('click', '.fa-heart', (event) => {
     let contributionId = $(event.target).attr('data-contributionid');
     $.ajax('../api/upvotes/' + contributionId, { method: 'POST' })

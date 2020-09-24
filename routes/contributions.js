@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const { getContributionsByUserId, acceptContribution, addContribution } = require('../db/contribution-queries');
+const { getContributionsByUserId, acceptContribution, addContribution, deleteContribution } = require('../db/contribution-queries');
 const { getContributionsById, getContributions } = require('../db/story-queries');
 
 // GET contributions by user id: /contributions/user/:userid
@@ -29,6 +29,13 @@ router.get('/:contributionid', (req, res) => {
 
 router.post('/:contributionid', (req, res) => {
   acceptContribution(req.params.contributionid)
+    .then((contribution) => {
+      res.json({ contribution });
+    });
+});
+
+router.post('/:contributionid/delete', (req, res) => {
+  deleteContribution(req.params.contributionid)
     .then((contribution) => {
       res.json({ contribution });
     });
