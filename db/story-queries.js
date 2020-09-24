@@ -64,7 +64,20 @@ const getUpvotes = () => {
 
 
 const getStoriesByUserId = (id) => {
-  return db.query('SELECT * FROM stories WHERE stories.user_id = $1', [id])
+  return db.query(`
+    SELECT
+      stories.id as story_id,
+      stories.title,
+      stories.text,
+      stories.status,
+      users.id as user_id,
+      users.name,
+      users.avatar
+    FROM stories
+    JOIN users
+      ON stories.user_id = users.id
+    WHERE stories.user_id = $1
+  `, [id])
     .then((response) => {
       return response.rows;
     });
