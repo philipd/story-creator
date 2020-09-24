@@ -26,7 +26,7 @@ const createStoryElement = function(storyData) {
     $openButton = $('<button>').attr('type', 'button').attr('id', 'open-btn').attr('data-storyid', storyData.story_id).text('Open for Contributions');
   } else if (storyData.status === 'open') {
     $endButton = $('<button>').attr('type', 'button').attr('id', 'end-btn').attr('data-storyid', storyData.story_id).text('End Story');
-    $closeButton = $('<button>').attr('type', 'button').attr('id', 'close-btn').attr('data-storyid', storyData.story_id).text('Close for Contributions');
+    $closeButton = $('<button>').attr('type', 'button').attr('id', 'close-btn').attr('data-storyid', storyData.story_id).text('Pause Contributions');
   }
 
   let $footer = $(`
@@ -219,6 +219,7 @@ const addEventListeners = function() {
         loadAccepted();
         loadContributions();
         $("html, body").animate({ scrollTop: 0 }, "slow");
+        $('#story-container > footer').hide();
       });
   });
 
