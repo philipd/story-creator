@@ -13,7 +13,7 @@ const createStoryElement = function(storyData) {
   let $story = $('<article>').addClass('story');
   let $storyHeader = $(`
   <article class="storyheader">
-    <p class="title"><a href="/stories/${storyData.story_id}">${storyData.title}</a></p>
+    <p class="title"><a href="/stories/${storyData.story_id}">${storyData.title || 'No stories yet'}</a></p>
   </article>`);
   let $text = $('<p>').addClass('storytext').text(storyData.text);
   $story.append($storyHeader, $text,);
