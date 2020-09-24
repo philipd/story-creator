@@ -15,12 +15,20 @@ const createStoryElement = function(storyData) {
     </div>
   </article>`);
   let $text = $('<p>').addClass('storytext').text(storyData.text);
-  let $button;
+  let $openButton;
+  let $closeButton;
+  let $endButton;
+  let $theEnd;
   if (storyData.status === 'complete') {
-    $button = $('<button>').attr('type', 'button').attr('id', 'open-btn').attr('data-storyid', storyData.story_id).text('Open for Contributions');
+    $theEnd = $('<div>').attr('id', 'the-end').text('THE END!');
+  } else if (storyData.status === 'closed') {
+    $endButton = $('<button>').attr('type', 'button').attr('id', 'end-btn').attr('data-storyid', storyData.story_id).text('End Story');
+    $openButton = $('<button>').attr('type', 'button').attr('id', 'open-btn').attr('data-storyid', storyData.story_id).text('Open for Contributions');
   } else if (storyData.status === 'open') {
-    $button = $('<button>').attr('type', 'button').attr('id', 'end-btn').attr('data-storyid', storyData.story_id).text('End Story');
+    $endButton = $('<button>').attr('type', 'button').attr('id', 'end-btn').attr('data-storyid', storyData.story_id).text('End Story');
+    $closeButton = $('<button>').attr('type', 'button').attr('id', 'close-btn').attr('data-storyid', storyData.story_id).text('Pause Contributions');
   }
+
   let $footer = $(`
     <footer class="footer">
       <div id="storybuttons">
@@ -28,9 +36,10 @@ const createStoryElement = function(storyData) {
     </footer>`);
   console.log(currentUser, storyCreator);
   if (currentUser === storyCreator) {
-    $($footer.find('#storybuttons')[0]).append($button);
+    $($footer.find('#storybuttons')[0]).append($openButton, $closeButton, $endButton);
   }
-  $story.append($storyHeader, $text, $footer);
+  $story.append($storyHeader, $text);
+  $('#story-container').append($footer, $theEnd);
   return $story;
 };
 // <button type="button" id="end-btn" data-storyid="${storyData.story_id}">End Story</button>
@@ -109,7 +118,7 @@ const loadStories = function() {
       renderStories(response.story);
       if (response.story.status == 'complete') {
         $('body > main').hide();
-        $('#story > article > footer').hide();
+        $('#story-container > article > footer').hide();
       }
     });
 };
@@ -124,7 +133,6 @@ const renderAccepted = function(accepted) {
 const loadAccepted = function() {
   $.ajax('../api/stories/' + storyid + '/accepted', { method: 'GET' })
     .then(function(response) {
-      // $('#story > article > footer').hide();  - HIDES STORY FOOTER (to be used with non owner)
       renderAccepted(response.story);
     });
 };
@@ -167,18 +175,31 @@ $postContribution.on('submit', function(event) {
 // };
 
 const addEventListeners = function() {
-  $('#story').on('click', '#end-btn', event => {
+  $('#story-container').on('click', '#end-btn', event => {
     console.log('End story');
     const storyId = $(event.target).attr('data-storyid');
     $.ajax('../api/stories/' + storyId + '/complete', { method: 'POST' })
       .then(response => {
         loadStories();
         loadAccepted();
-
+        $('#story-container > footer').remove();
       });
   });
 
-  $('#story').on('click', '#open-btn', event => {
+  $('#story-container').on('click', '#close-btn', event => {
+    console.log('Closed story');
+    const storyId = $(event.target).attr('data-storyid');
+    $.ajax('../api/stories/' + storyId + '/closed', { method: 'POST' })
+      .then(response => {
+        console.log('hi');
+        loadStories();
+        loadAccepted();
+        $('#story-container > footer').hide();
+        $('#form').hide();
+      });
+  });
+
+  $('#story-container').on('click', '#open-btn', event => {
     console.log('Open story');
     const storyId = $(event.target).attr('data-storyid');
     $.ajax('../api/stories/' + storyId + '/open', { method: 'POST' })
@@ -186,6 +207,8 @@ const addEventListeners = function() {
         console.log('hi');
         loadStories();
         loadAccepted();
+        $('#story-container > footer').hide();
+        $('#form').show();
       });
   });
 
@@ -199,6 +222,7 @@ const addEventListeners = function() {
         loadAccepted();
         loadContributions();
         $("html, body").animate({ scrollTop: 0 }, "slow");
+        $('#story-container > footer').hide();
       });
   });
 
