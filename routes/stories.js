@@ -57,7 +57,8 @@ router.post('/:storyid/closed', (req, res) => {
 router.post('/', (req, res) => {
   addStory(req.session.userid, req.body.title, req.body.text)
     .then( response => {
-      return res.redirect('/stories/user/'+req.session.userid);
+      const newStoryId = response[0].id;
+      return res.redirect('/stories/'+newStoryId);
     })
 });
 

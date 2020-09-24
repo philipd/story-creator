@@ -76,6 +76,8 @@ const addStory = (user_id, title, text) => {
       (user_id, title, text)
     VALUES
       ($1, $2, $3)
+    RETURNING
+      id;
   `, [user_id, title, text]).then(response => {
     return response.rows;
   });
