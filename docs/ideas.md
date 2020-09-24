@@ -6,3 +6,4 @@ Users can search for stories by title, etc.
 Users can assign a genre to each story
 Users can upvote stories
 Night mode
+"The End" is displayed at the bottom of complete stories

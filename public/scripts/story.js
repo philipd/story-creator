@@ -148,11 +148,11 @@ const loadContributions = function() {
 
 const $postContribution = $('#form');
 $postContribution.on('submit', function(event) {
+  event.preventDefault();
   const serializedData = $(this).serialize();
-  console.log('Serializedata', serializedData);
-  $.post('../api/contributions/' + storyid + '/addcontribution', serializedData)
-    .then();
-
+  console.log('Serializedata', { method: 'POST', data: serializedData });
+  $.ajax('../api/contributions/' + storyid + '/addcontribution', { method: 'POST', data: serializedData })
+    .then(loadContributions());
 });
 
 // const loadUpvotes = function() {
@@ -208,6 +208,11 @@ const addEventListeners = function() {
         $(event.target).siblings('output').text(count);
       });
   });
+
+  // $('button #post-contribution').on('submit', event => {
+  //   event.preventDefault();
+  //   console.log('it works!');
+  // });
 
 };
 
