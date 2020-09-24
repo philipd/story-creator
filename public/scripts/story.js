@@ -152,7 +152,10 @@ $postContribution.on('submit', function(event) {
   const serializedData = $(this).serialize();
   console.log('Serializedata', { method: 'POST', data: serializedData });
   $.ajax('../api/contributions/' + storyid + '/addcontribution', { method: 'POST', data: serializedData })
-    .then(loadContributions());
+    .then( response => {
+      $('#form').trigger('reset');
+      loadContributions();
+    });
 });
 
 // const loadUpvotes = function() {
