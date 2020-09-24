@@ -16,7 +16,24 @@ const createStoryElement = function(storyData) {
     <p class="title"><a href="/stories/${storyData.story_id}">${storyData.title || 'No stories yet'}</a></p>
   </article>`);
   let $text = $('<p>').addClass('storytext').text(storyData.text);
-  $story.append($storyHeader, $text,);
+  let $footer;
+  if (storyData.status === 'open') {
+    $footer = $(`
+    <footer class="footer">
+        <span class="status">Open to Contributions ✍</span>
+    </footer>`);
+  } else if (storyData.status === 'closed') {
+    $footer = $(`
+    <footer class="footer">
+        <span class="status">Currently Closed to Contributions</span>
+    </footer>`);
+  } else if (storyData.status === 'complete') {
+    $footer = $(`
+    <footer class="footer">
+        <span class="status">A Complete Story! Have a Read 🤓!</span>
+    </footer>`);
+  }
+  $story.append($storyHeader, $text, $footer);
   return $story;
 };
 
