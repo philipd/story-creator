@@ -56,7 +56,7 @@ router.get("/login/:userid", (req, res) => {
 
 router.get("/login", (req, res) => {
   req.session.userid = 3;
-  return res.redirect('/stories');
+  return res.redirect('/stories/user/3');
 });
 
 router.get('/logout', (req, res) => {
