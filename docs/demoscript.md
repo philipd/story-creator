@@ -15,3 +15,11 @@
 14. Delete contributions
 15. Close the story
 16. Create a new story
+
+
+Before Demo:
+ - Reset db
+ - 90% Zoom
+ - View 'I, Roommate'
+
+I explained to them in their primitive language how we were on a mission to help bring balance to the force, by defeating Vader and the Empire. Once they understood our situation, their leader erupted into Ewoky excitement ...
