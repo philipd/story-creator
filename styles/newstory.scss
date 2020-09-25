@@ -36,6 +36,7 @@ header, nav {
   align-items: center;
   border-style: solid;
   background-color: rgba(52, 83, 170, 0.35);
+  margin-top: 1em;
 }
 
 #transparent {
@@ -81,6 +82,18 @@ header, nav {
                0 20px 20px rgba(0,0,0,.15);
 }
 
+.ad {
+  display: flex;
+  justify-items: center;
+  align-items: center;
+  align-content: center;
+  justify-content: center;
+  text-align: center;
+  color: rgb(2, 2, 51);
+  font-size: 1.25em;
+  font-weight: 600;
+}
+
 .title {
   width: 95%;
   resize: none;
@@ -111,7 +124,7 @@ header, nav {
 }
 
 #open {
-  margin-top: 2em;
+  margin-top: 1.5em;
   color: rgb(71, 200, 223);
   font-size: 2em;
   font-variant-caps: small-caps;
