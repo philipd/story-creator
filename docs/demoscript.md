@@ -7,7 +7,7 @@
 6. Read complete story ('Eve')
 7. Upvote contributions
 8. Read an open story ('Ewoks')
-9. Make a contribution
+9. Make a contribution (Philip take over)
 10. Look at own stories page
 11. Look at open story ('I, Roommate')
 12. Accept a contribution
