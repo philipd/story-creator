@@ -20,6 +20,6 @@
 Before Demo:
  - Reset db
  - 90% Zoom
- - View 'I, Roommate'
+ - View 'I, Roommate', 'Ewoks', 'Eve', 'Mother's Day'
 
 I explained to them in their primitive language how we were on a mission to help bring balance to the force, by defeating Vader and the Empire. Once they understood our situation, their leader erupted into Ewoky excitement ...

@@ -67,7 +67,7 @@ const createContributionsContainer = function(contributionData) {
             <span id="contribution-avatar"><img src=${contribution.avatar}></span>
             <span id="contribution-handle"><a href="/stories/user/${contribution.user_id}">${contribution.name}</a></span>
           </div>
-          <p class="title">Part ${contribution.chapter_number}</p>
+          <p class="title">Chapter ${contribution.chapter_number}</p>
           <div class="icons">
             <i data-contributionid="${contribution.contributions_id}" class="far fa-heart fa-xs ${heartClass}">&nbsp;</i>
             <output class="upvotes">${contribution.count}</output>
