@@ -15,3 +15,5 @@ insert into stories (user_id, title, text) values (9, 'Dr. Wilys Demise', 'Dr. W
 insert into stories (user_id, title, text) values (3, 'Xmas Story', 'In the year 2801, The Friendly Robot Company developed a robotic version of St. Nick himself to determine who has been naughty and who has been nice.');
 insert into stories (user_id, title, text) values (7, 'The A.W.E.S.O.M.-O 4000', 'Cartman had to recover the tape. No one could see a recording of him dancing in a Britney Spears costume. This is how he became The A.W.E.S.O.M.-O 4000!');
 insert into stories (user_id, title, text) values (1, 'The Energizer Bunny', 'Its been 32 years, and I still keep going, and going, and going, and going, and... ');
+
+update stories set status = 'complete' where id = 1;

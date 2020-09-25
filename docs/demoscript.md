@@ -1,0 +1,7 @@
+- Read a complete story ('Eve')
+- Contribute to an open story ('Ewoks')
+- Accept contribution on own story ('I, Roommate')
+- Finish that story ('I, Roommate')
+- Delete a contribution from a story ('Mothers Day')
+- Close that story ('Mothers Day')
+- Create a new story
