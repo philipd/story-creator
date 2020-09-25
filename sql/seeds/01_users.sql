@@ -5,6 +5,6 @@ insert into users (name, avatar) values ('R2-D2', 'https://robohash.org/velitfac
 insert into users (name, avatar) values ('T-800', 'https://robohash.org/xdefvd.png?size=40x40&set=set1');
 insert into users (name, avatar) values ('RoboCop', 'https://robohash.org/dolorquiad.png?size=40x40&set=set1');
 insert into users (name, avatar) values ('Bumblebee', 'https://robohash.org/facerevoluptatemrepudiandae.png?size=40x40&set=set1');
-insert into users (name, avatar) values ('Johnny 5', 'https://robohash.org/2s.png?size=40x40&set=set1');
+insert into users (name, avatar) values ('Johnny5', 'https://robohash.org/2s.png?size=40x40&set=set1');
 insert into users (name, avatar) values ('MegaMan', 'https://robohash.org/xdefv.png?size=40x40&set=set1');
 insert into users (name, avatar) values ('Tin Man', 'https://robohash.org/voluptatumetmpolestias.png?size=40x40&set=set1');
