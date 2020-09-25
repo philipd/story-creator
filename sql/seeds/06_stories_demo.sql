@@ -1,4 +1,0 @@
-insert into stories (user_id, title, text)
-values (1, "I, Roommate", "Fry had been living in the Planet express offices, making messes, leaving food out, wasting water, and generally disrupting business. When it was discovered, however, that Fry had eaten the professor's alien mummy (mistaking it for beef jerky), the professor declared that Fry had to go.");
-values (1, "Xmas Story", "Every Mother's Day, robots made in Mom's Friendly Robot Company factories around the world give gifts, money, and cards to the owner of the corporation, Mom. Despite extensively promoting the holiday, Mom actually hates the day and is in an even more bitter mood this year, remembering a romantic affair that had ended 70 years prior.");
-values (1, "Raging Bender", "In the year 2801, The Friendly Robot Company developed a robotic version of St. Nick himself to determine who has been naughty and who has been nice.");
