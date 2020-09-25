@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>Story Creator is great and you should sign up</title>
+    <title>Story Creator</title>
 
     <link rel="stylesheet" href="/vendor/normalize-4.1.1.css" type="text/css" />
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
     <link rel="stylesheet" href="/vendor/border-box.css" type="text/css" />
-    <link rel="stylesheet" href="/styles/layout.css" type="text/css" />
+    <link rel="stylesheet" href="/styles/newstory.css" type="text/css" />
 
     <script type="text/javascript" src="/vendor/jquery-3.0.0.js"></script>
     <script type="text/javascript" src="/scripts/app.js"></script>
@@ -14,7 +14,19 @@
 
   <body>
     <%- include('partials/_header') %>
-    <h1>Story Creator is great and you should sign up</h1>
+
+    <form class="newstory-form" action="/api/stories" method="POST">
+      <div class="form">
+        <label id="title" for="title">Story Creator</label>
+        <p class="ad">The fun app where you can create amazing stories with the help of your friends!</p>
+        <img src="https://is3-ssl.mzstatic.com/image/thumb/Purple71/v4/3e/da/ad/3edaaddb-47e0-93d7-c79e-16bf5c460e2b/source/512x512bb.jpg">
+
+        <div class="ad">Got an Ad you would like to divulge? Story Creator has got 2,147,483,648 Users!</div>
+        <div class="ad">Our database administrators are hard at work to update the Data Types!</div>
+        <label id="open" for="text">Sign in and Join our Amazing Community!!!</label>
+      </div>
+    </form>
+
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
