@@ -84,6 +84,7 @@ header, nav {
 
 .ad {
   display: flex;
+  flex-direction: column;
   justify-items: center;
   align-items: center;
   align-content: center;
@@ -92,6 +93,21 @@ header, nav {
   color: rgb(2, 2, 51);
   font-size: 1.25em;
   font-weight: 600;
+  background-color: rgb(196, 238, 234);
+  font-size: 1.3em;
+  font-variant-caps: small-caps;
+  font-weight: 700;
+  border: #100453;
+  border-style: solid;
+  border-width: 4px;
+  margin: 1em;
+  margin-top: 0;
+}
+
+body > form > div > img {
+  width: 400px;
+  height: 400px;
+  margin-bottom: 1em;
 }
 
 .title {
@@ -105,6 +121,7 @@ header, nav {
 }
 
 #title {
+  text-align: center;
   color: rgb(71, 200, 223);
   font-size: 2em;
   font-variant-caps: small-caps;
@@ -128,7 +145,7 @@ header, nav {
   color: rgb(71, 200, 223);
   font-size: 2em;
   font-variant-caps: small-caps;
-  font-weight: 700;
+  font-weight: 800;
   text-shadow: 0 1px 0 rgb(44, 90, 104),
                0 2px 0 rgb(44, 90, 104),
                0 3px 0 rgb(44, 90, 104),
@@ -142,7 +159,9 @@ header, nav {
                0 10px 10px rgba(0,0,0,.2),
                0 20px 20px rgba(0,0,0,.15);
 }
-
+#types {
+  font-size: 0.75em;
+}
 .text {
   width: 95%;
   resize: none;
