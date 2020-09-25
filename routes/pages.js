@@ -55,7 +55,7 @@ router.get("/login/:userid", (req, res) => {
 });
 
 router.get("/login", (req, res) => {
-  req.session.userid = 1;
+  req.session.userid = 3;
   return res.redirect('/stories');
 });
 
